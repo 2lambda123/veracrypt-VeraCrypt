@@ -1151,11 +1151,6 @@ void handleError_Dll (MSIHANDLE hInstaller, int code, const char* srcPos)
 		// A non-error
 		break;
 
-	case ERR_UNSUPPORTED_TRUECRYPT_FORMAT:
-		StringCbPrintfW (szTmp, sizeof(szTmp), GetString ("UNSUPPORTED_TRUECRYPT_FORMAT"), (code >> 24), (code >> 16) & 0x000000FF);
-		MSILogAndShow (hInstaller, MSI_ERROR_LEVEL, AppendSrcPos (szTmp, srcPos).c_str());
-		break;
-
 	default:
 		StringCbPrintfW (szTmp, sizeof(szTmp), GetString ("ERR_UNKNOWN"), code);
 		MSILogAndShow (hInstaller, MSI_ERROR_LEVEL, AppendSrcPos (szTmp, srcPos).c_str());
@@ -1501,7 +1496,6 @@ BOOL DoDriverUnload_Dll (MSIHANDLE hInstaller, HWND hwnd)
 
 	if (hDriver != INVALID_HANDLE_VALUE)
 	{
-		MOUNT_LIST_STRUCT driver;
 		LONG driverVersion = VERSION_NUM;
 		int refCount;
 		DWORD dwResult;
