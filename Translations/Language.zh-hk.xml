@@ -413,7 +413,7 @@
     <entry lang="zh-hk" key="CIPHER_HIDVOL_TITLE">隱藏加密區的加密選項</entry>
     <entry lang="zh-hk" key="CIPHER_TITLE">加密選項</entry>
     <entry lang="zh-hk" key="CLEAN_WINMRU_FAILED">警告：無法清除上次所選擇的加密區或加密鑰檔案的路徑(由檔案選擇器記憶)！</entry>
-    <entry lang="zh-hk" key="COMPRESSION_NOT_SUPPORTED">錯誤：這個加密區容器檔案在檔案系統層面被壓縮過。VeraCrypt 不支援壓縮過的加密區容器檔案(原因是壓縮過的加密資料會降低效能和存在資料冗餘)。\n\n請依照以下步驟取消壓縮： 1)在 Windows 檔案瀏覽器中右按加密區容器檔案(不是在 VeraCrypt 視窗中)。 2)選擇 “內容”。 3)在 “內容” 對話方塊，選擇 “進階”。 4)在 “進階內容” 對話方塊，取消剔選 “壓縮內容以節省磁碟空間” 並按 [確定]。 5)返回到 “內容” 對話方塊，按 [確定]。</entry>
+    <entry lang="zh-hk" key="COMPRESSION_NOT_SUPPORTED">錯誤：這個加密區容器檔案在檔案系統層面被壓縮過。VeraCrypt 不支援壓縮過的加密區容器檔案(原因是壓縮過的加密資料會降低效能和存在資料冗餘)。\n\n請依照以下步驟取消壓縮： 1)在 Windows 檔案瀏覽器中右按加密區容器檔案(不是在 VeraCrypt 視窗中)。 2)選擇 [內容]。 3)在 [內容] 對話方塊，選擇 [進階]。 4)在 [進階內容] 對話方塊，取消剔選 [壓縮內容以節省磁碟空間] 並按 [確定]。 5)返回到 [內容] 對話方塊，按 [確定]。</entry>
     <entry lang="zh-hk" key="CREATE_FAILED">建立加密區 %s 失敗</entry>
     <entry lang="zh-hk" key="DEVICE_FREE_BYTES">%s 的大小為 %.2f 位元組</entry>
     <entry lang="zh-hk" key="DEVICE_FREE_KB">%s 的大小為 %.2f KiB</entry>
