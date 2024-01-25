@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <localization prog-version="1.26.4">
+  <localization prog-version="1.26.10">
     <language langid="he" name="עברית" en-name="Hebrew" version="0.1.0" translators="thewh1teagle" />
     <font lang="he" class="normal" size="11" face="default" />
     <font lang="he" class="bold" size="13" face="Arial" />
@@ -613,7 +613,7 @@
     <entry lang="he" key="FAVORITE_PIM_CHANGED">אמצעי אחסון זה רשום כמועדף על המערכת וה- PIM שלו השתנה. \n האם ברצונך ש- VeraCrypt יתעדכן אוטומטית את תצורת המערכת המועדפת (נדרשות הרשאות מנהל)? \n \n שים לב שאם תענה לא, יהיה עליך לעדכן אתמועדף על המערכת באופן ידני.</entry>
     <entry lang="he" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">חשוב: אם לא הרסת את דיסק ההצלה של VeraCrypt, ניתן עדיין לפענח את מחיצת המערכת / כונן המערכת באמצעות הסיסמה הישנה (על ידי אתחול דיסק ההצלה של VeraCrypt והזנת הסיסמה הישנה).עליכם ליצור דיסק הצלה חדש של VeraCrypt ואז להרוס את הישן. \n \n האם ברצונכם ליצור דיסק הצלה חדש של VeraCrypt?</entry>
     <entry lang="he" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">שים לב שדיסק ההצלה של VeraCrypt שלך עדיין משתמש באלגוריתם הקודם.אם אתה מחשיב את האלגוריתם הקודם כלא מאובטח, עליך ליצור דיסק הצלה חדש של VeraCrypt ואז להשמיד את הישן. \n \n האם ברצונך ליצור דיסק הצלה חדש של VeraCrypt?</entry>
-    <entry lang="he" key="KEYFILES_NOTE">כל סוג של קובץ (למשל .mp3, .jpg, .zip, .avi) עשוי לשמש כקובץ מפתח VeraCrypt.שים לב ש- VeraCrypt לעולם לא משנה את תוכן קובץ המפתחות.אתה יכול לבחור יותר מקובץ מפתח אחד (הסדר לא משנה).אם תוסיף תיקיה, כל הקבצים שאינם מוסתרים שנמצאו בה ישמשו כקובצי מפתח.לחץ על &amp;apos;הוסף קבצי אמצעי אבטחה&amp;apos; כדי לבחור קובצי מפתח המאוחסנים באמצעי האבטחה או בכרטיסים חכמים (או לייבוא קובצי אמצעי אבטחה לאמצעי האבטחה או כרטיסי חכם).</entry>
+    <entry lang="he" key="KEYFILES_NOTE">שים לב ש- VeraCrypt לעולם לא משנה את תוכן קובץ המפתחות.אתה יכול לבחור יותר מקובץ מפתח אחד (הסדר לא משנה).אם תוסיף תיקיה, כל הקבצים שאינם מוסתרים שנמצאו בה ישמשו כקובצי מפתח.לחץ על &amp;apos;הוסף קבצי אמצעי אבטחה&amp;apos; כדי לבחור קובצי מפתח המאוחסנים באמצעי האבטחה או בכרטיסים חכמים (או לייבוא קובצי אמצעי אבטחה לאמצעי האבטחה או כרטיסי חכם).</entry>
     <entry lang="he" key="KEYFILE_CHANGED">קובץ מפתח הוסיף / הוסר בהצלחה.</entry>
     <entry lang="he" key="KEYFILE_EXPORTED">קובץ מפתח מיוצא.</entry>
     <entry lang="he" key="PKCS5_PRF_CHANGED">אלגוריתם גזירת מפתח הכותרת הוגדר בהצלחה.</entry>
@@ -1632,6 +1632,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="he" key="LINUX_LANGUAGE">שפה</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified">
     <xs:element name="VeraCrypt">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="pl" name="Polski" en-name="Polish" version="1.0.0" translators="Mirek Druchowicz, Janusz Zamecki, Sobiesław Antolak, Begina Felicysym" />
     <font lang="pl" class="normal" size="11" face="default" />
     <font lang="pl" class="bold" size="13" face="Arial" />
@@ -613,7 +613,7 @@
     <entry lang="pl" key="FAVORITE_PIM_CHANGED">Ten wolumen jest zarejestrowany jako ulubiony systemu. \nCzy chcesz, aby VeraCrypt automatycznie uaktualnił konfigurację ulubionych systemu (wymagane uprawnienia administratora)?\n\nProszę zauważyć, że jeśli wybierzesz "nie", będziesz musiał uaktualnić ręcznie ulubione systemu.</entry>
     <entry lang="pl" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">WAŻNE: Jeżeli nie zniszczyłeś płyty ratunkowej VeraCrypt, twój system partycja/dysk może być ciągle odszyfrowany używając starego hasła (poprzez uruchomienie płyty ratunkowej VeraCrypt i wprowadzeniu starego hasła). Powinieneś stworzyć nową płytę ratunkową VeraCrypt i później skasować starą.\n\nCzy chcesz stworzyć nową płytę ratunkową VeraCrypt?</entry>
     <entry lang="pl" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Płyta ratunkowa programu VeraCrypt nadal używa poprzedniego algorytmu. Jeśli poprzedni algorytm uważany jest za niebezpieczny, należy utworzyć nową płytę ratunkową i zniszczyć poprzednią.\n\nCzy chcesz utworzyć nową płytę ratunkową?</entry>
-    <entry lang="pl" key="KEYFILES_NOTE">Plik dowolnego typu (np. .mp3, .jpg, .zip, .avi) może zostać użyty jako plik-klucza VC. Zauważ, że VC nigdy nie zmienia zawartości pliku-klucza. Możesz wybrać więcej niż jeden plik-klucza (porządek nie ma znaczenia). Jeśli dodasz folder, wszystkie nieukryte pliki z niego zostaną użyte jako pliki-klucze. Kliknij 'Dodaj token...', by wskazać pliki-kluczy przechowywane na tokenach bezpieczeństwa lub kartach pamięci (albo zaimportować pliki-klucze na tokeny bezpieczeństwa lub karty pamięci).</entry>
+    <entry lang="pl" key="KEYFILES_NOTE">Zauważ, że VC nigdy nie zmienia zawartości pliku-klucza. Możesz wybrać więcej niż jeden plik-klucza (porządek nie ma znaczenia). Jeśli dodasz folder, wszystkie nieukryte pliki z niego zostaną użyte jako pliki-klucze. Kliknij 'Dodaj token...', by wskazać pliki-kluczy przechowywane na tokenach bezpieczeństwa lub kartach pamięci (albo zaimportować pliki-klucze na tokeny bezpieczeństwa lub karty pamięci).</entry>
     <entry lang="pl" key="KEYFILE_CHANGED">Pliki-klucze zostały pomyślnie dodane/usunięte.</entry>
     <entry lang="pl" key="KEYFILE_EXPORTED">Plik-klucz wyeksportowano.</entry>
     <entry lang="pl" key="PKCS5_PRF_CHANGED">Algorytm klucza nagłówka został pomyślnie ustawiony.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="pl" key="EXPANDER_MOUNTING_VOLUME">Podłączanie wolumenu...\n</entry>
     <entry lang="pl" key="EXPANDER_UNMOUNTING_VOLUME">Odłączanie wolumenu...\n</entry>
     <entry lang="pl" key="EXPANDER_EXTENDING_FILESYSTEM">Rozszerzanie systemu plików...\n</entry>
+    <entry lang="pl" key="PARTIAL_SYSENC_MOUNT_READONLY">Ostrzeżenie: Partycja systemowa, którą próbowano podłączyć, nie została w pełni zaszyfrowana. Ze względów bezpieczeństwa, aby zapobiec potencjalnemu uszkodzeniu lub niepożądanym modyfikacjom, wolumen '%s' został podłączony jako tylko do odczytu.</entry>
+    <entry lang="pl" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Ważne informacje na temat korzystania z rozszerzeń plików innych dostawców</entry>
+    <entry lang="pl" key="IDC_DISABLE_MEMORY_PROTECTION">Wyłącz ochronę pamięci w celu zapewnienia zgodności z narzędziami ułatwień dostępu</entry>
+    <entry lang="pl" key="DISABLE_MEMORY_PROTECTION_WARNING">OSTRZEŻENIE: Wyłączenie ochrony pamięci znacznie zmniejsza bezpieczeństwo. Włącz tę opcję TYLKO wtedy, gdy korzystasz z narzędzi ułatwień dostępu, takich jak czytniki ekranu, do interakcji z interfejsem użytkownika VeraCrypt.</entry>
+    <entry lang="pl" key="LINUX_LANGUAGE">Język</entry>
+    <entry lang="pl" key="LINUX_SELECT_SYS_DEFAULT_LANG">Wybierz domyślny język systemu</entry>
+    <entry lang="pl" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">Aby zmiana języka odniosła skutek, należy ponownie uruchomić VeraCrypt.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

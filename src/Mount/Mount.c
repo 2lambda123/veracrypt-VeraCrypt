@@ -295,7 +295,7 @@ static std::vector<MSXML2::IXMLDOMNodePtr> GetReadChildNodes (MSXML2::IXMLDOMNod
 static bool validateDcsPropXml(const char* xmlData)
 {
 	bool bValid = false;	
-	HRESULT hr = CoInitialize(NULL);
+	HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 	if(FAILED(hr))
 		return false;
 	else
@@ -4514,7 +4514,7 @@ BOOL CALLBACK TravelerDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lPa
 			wchar_t dstPath[MAX_PATH * 2];
 			GetDlgItemText (hwndDlg, IDC_DIRECTORY, dstPath, ARRAYSIZE (dstPath));
 
-			if (BrowseDirectories (hwndDlg, "SELECT_DEST_DIR", dstPath))
+			if (BrowseDirectories (hwndDlg, "SELECT_DEST_DIR", dstPath, dstPath))
 				SetDlgItemText (hwndDlg, IDC_DIRECTORY, dstPath);
 
 			return 1;
@@ -5565,21 +5565,18 @@ retry:
 				goto retry;
 			}
 
-			if (IsOSAtLeast (WIN_7))
+			// Undo SHCNE_DRIVEREMOVED
+			if (	DeviceIoControl (hDriver, TC_IOCTL_GET_MOUNTED_VOLUMES, NULL, 0, &mountList, sizeof (mountList), &dwResult, NULL)
+				&& mountList.ulMountedDrives
+				&& (mountList.ulMountedDrives < (1 << 26))
+				)
 			{
-				// Undo SHCNE_DRIVEREMOVED
-				if (	DeviceIoControl (hDriver, TC_IOCTL_GET_MOUNTED_VOLUMES, NULL, 0, &mountList, sizeof (mountList), &dwResult, NULL)
-					&& mountList.ulMountedDrives
-					&& (mountList.ulMountedDrives < (1 << 26))
-					)
+				for (i = 0; i < 26; i++)
 				{
-					for (i = 0; i < 26; i++)
+					if (mountList.ulMountedDrives & (1 << i))
 					{
-						if (mountList.ulMountedDrives & (1 << i))
-						{
-							wchar_t root[] = { (wchar_t) i + L'A', L':', L'\\', 0 };
-							SHChangeNotify (SHCNE_DRIVEADD, SHCNF_PATH, root, NULL);
-						}
+						wchar_t root[] = { (wchar_t) i + L'A', L':', L'\\', 0 };
+						SHChangeNotify (SHCNE_DRIVEADD, SHCNF_PATH, root, NULL);
 					}
 				}
 			}
@@ -6570,7 +6567,7 @@ static void ResumeInterruptedNonSysInplaceEncProcess (BOOL bDecrypt)
 
 BOOL SelectContainer (HWND hwndDlg)
 {
-	if (BrowseFiles (hwndDlg, "OPEN_VOL_TITLE", szFileName, bHistory, FALSE, NULL) == FALSE)
+	if (BrowseFiles (hwndDlg, "OPEN_VOL_TITLE", szFileName, bHistory, FALSE) == FALSE)
 		return FALSE;
 
 	AddComboItem (GetDlgItem (hwndDlg, IDC_VOLUME), szFileName, bHistory);
@@ -7099,7 +7096,7 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			if (EnableMemoryProtection)
 			{
 				/* Protect this process memory from being accessed by non-admin users */
-				EnableProcessProtection ();
+				ActivateMemoryProtection ();
 			}
 
 			if (ComServerMode)
@@ -9937,8 +9934,7 @@ static VOID WINAPI SystemFavoritesServiceMain (DWORD argc, LPTSTR *argv)
 	memset (&SystemFavoritesServiceStatus, 0, sizeof (SystemFavoritesServiceStatus));
 	SystemFavoritesServiceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
 	SystemFavoritesServiceStatus.dwControlsAccepted = SERVICE_ACCEPT_STOP;
-	if (IsOSAtLeast (WIN_VISTA))
-		SystemFavoritesServiceStatus.dwControlsAccepted |= SERVICE_ACCEPT_PRESHUTDOWN | SERVICE_ACCEPT_SESSIONCHANGE | SERVICE_ACCEPT_POWEREVENT;
+	SystemFavoritesServiceStatus.dwControlsAccepted |= SERVICE_ACCEPT_PRESHUTDOWN | SERVICE_ACCEPT_SESSIONCHANGE | SERVICE_ACCEPT_POWEREVENT;
 
 	for (i = 1; i < argc; i++)
 	{
@@ -10136,7 +10132,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 	DialogBoxParamW (hInstance, MAKEINTRESOURCEW (IDD_MOUNT_DLG), NULL, (DLGPROC) MainDialogProc,
 			(LPARAM) lpszCommandLine);
 
-	FinalizeApp ();
 	/* Terminate */
 	return 0;
 }
@@ -10962,7 +10957,7 @@ noHidden:
 		goto ret;
 
 	/* Select backup file */
-	if (!BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, TRUE, NULL))
+	if (!BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, TRUE))
 		goto ret;
 
 	/* Conceive the backup file */
@@ -11245,7 +11240,7 @@ int RestoreVolumeHeader (HWND hwndDlg, const wchar_t *lpszVolume)
 		}
 
 		/* Select backup file */
-		if (!BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, FALSE, NULL))
+		if (!BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, FALSE))
 		{
 			nStatus = ERR_SUCCESS;
 			goto ret;
@@ -11564,6 +11559,12 @@ void SetServiceConfigurationFlag (uint32 flag, BOOL state)
 		BootEncObj->SetServiceConfigurationFlag (flag, state ? true : false);
 }
 
+void SetMemoryProtectionConfig (BOOL bEnable)
+{
+	DWORD config = bEnable? 1: 0;
+	if (BootEncObj)
+		BootEncObj->WriteLocalMachineRegistryDwordValue (L"SYSTEM\\CurrentControlSet\\Services\\veracrypt", VC_ENABLE_MEMORY_PROTECTION, config);
+}
 
 void NotifyService (DWORD dwNotifyCmd)
 {
@@ -11573,6 +11574,7 @@ void NotifyService (DWORD dwNotifyCmd)
 
 static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	static HWND hDisableMemProtectionTooltipWnd = NULL;
 	WORD lw = LOWORD (wParam);
 
 	switch (msg)
@@ -11606,7 +11608,7 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 				EnableWindow (GetDlgItem (hwndDlg, IDC_ENABLE_CPU_RNG), FALSE);
 			}
 
-			if (IsOSAtLeast (WIN_7) && IsRamEncryptionSupported())
+			if (IsRamEncryptionSupported())
 			{
 				CheckDlgButton (hwndDlg, IDC_ENABLE_RAM_ENCRYPTION, (driverConfig & VC_DRIVER_CONFIG_ENABLE_RAM_ENCRYPTION) ? BST_CHECKED : BST_UNCHECKED);
 			}
@@ -11615,6 +11617,8 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 				CheckDlgButton (hwndDlg, IDC_ENABLE_RAM_ENCRYPTION,  BST_UNCHECKED);
 				EnableWindow (GetDlgItem (hwndDlg, IDC_ENABLE_RAM_ENCRYPTION), FALSE);
 			}
+
+			CheckDlgButton (hwndDlg, IDC_DISABLE_MEMORY_PROTECTION, ReadMemoryProtectionConfig() ? BST_UNCHECKED : BST_CHECKED);
 
 			size_t cpuCount = GetCpuCount(NULL);
 
@@ -11649,8 +11653,23 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 
 			ToHyperlink (hwndDlg, IDC_MORE_INFO_ON_HW_ACCELERATION);
 			ToHyperlink (hwndDlg, IDC_MORE_INFO_ON_THREAD_BASED_PARALLELIZATION);
+
+			hDisableMemProtectionTooltipWnd = CreateToolTip (IDC_DISABLE_MEMORY_PROTECTION, hwndDlg, "DISABLE_MEMORY_PROTECTION_WARNING");
+			// make IDC_DISABLE_MEMORY_PROTECTION control fit the text so that the tooltip is shown only when mouse is over the text
+			AccommodateCheckBoxTextWidth(hwndDlg, IDC_DISABLE_MEMORY_PROTECTION);
+			// make the help button adjacent to the checkbox
+			MakeControlsContiguous(hwndDlg, IDC_DISABLE_MEMORY_PROTECTION, IDC_DISABLE_MEMORY_PROTECTION_HELP);
 		}
 		return 0;
+
+	// handle message to destroy hDisableMemProtectionTooltipWnd when the dialog is closed
+	case WM_DESTROY:
+		if (hDisableMemProtectionTooltipWnd)
+		{
+			DestroyWindow (hDisableMemProtectionTooltipWnd);
+			hDisableMemProtectionTooltipWnd = NULL;
+		}
+		break;
 
 	case WM_COMMAND:
 
@@ -11675,6 +11694,7 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 				BOOL enableExtendedIOCTL = IsDlgButtonChecked (hwndDlg, IDC_ENABLE_EXTENDED_IOCTL_SUPPORT);
 				BOOL allowTrimCommand = IsDlgButtonChecked (hwndDlg, IDC_ALLOW_TRIM_NONSYS_SSD);
 				BOOL allowWindowsDefrag = IsDlgButtonChecked (hwndDlg, IDC_ALLOW_WINDOWS_DEFRAG);
+				BOOL bDisableMemoryProtection = IsDlgButtonChecked (hwndDlg, IDC_DISABLE_MEMORY_PROTECTION);
 
 				try
 				{
@@ -11718,32 +11738,35 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 					if (IsOSAtLeast (WIN_8_1))
 						SetDriverConfigurationFlag (VC_DRIVER_CONFIG_ALLOW_WINDOWS_DEFRAG, allowWindowsDefrag);
 					SetDriverConfigurationFlag (VC_DRIVER_CONFIG_ENABLE_CPU_RNG, enableCpuRng);
-					if (IsOSAtLeast (WIN_7))
-					{
-						BOOL originalRamEncryptionEnabled = (driverConfig & VC_DRIVER_CONFIG_ENABLE_RAM_ENCRYPTION)? TRUE : FALSE;
-						if (originalRamEncryptionEnabled != enableRamEncryption)
-						{
-							if (enableRamEncryption)
-							{
-								// Disable Hibernate and Fast Startup if they are enabled
-								BOOL bHibernateEnabled, bHiberbootEnabled;
-								if (GetHibernateStatus (bHibernateEnabled, bHiberbootEnabled))
-								{
-									if (bHibernateEnabled)
-									{										
-										BootEncObj->WriteLocalMachineRegistryDwordValue (L"SYSTEM\\CurrentControlSet\\Control\\Power", L"HibernateEnabled", 0);
-									}
 
-									if (bHiberbootEnabled)
-									{										
-										BootEncObj->WriteLocalMachineRegistryDwordValue (L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power", L"HiberbootEnabled", 0);
-									}
+					BOOL originalRamEncryptionEnabled = (driverConfig & VC_DRIVER_CONFIG_ENABLE_RAM_ENCRYPTION)? TRUE : FALSE;
+					if (originalRamEncryptionEnabled != enableRamEncryption)
+					{
+						if (enableRamEncryption)
+						{
+							// Disable Hibernate and Fast Startup if they are enabled
+							BOOL bHibernateEnabled, bHiberbootEnabled;
+							if (GetHibernateStatus (bHibernateEnabled, bHiberbootEnabled))
+							{
+								if (bHibernateEnabled)
+								{										
+									BootEncObj->WriteLocalMachineRegistryDwordValue (L"SYSTEM\\CurrentControlSet\\Control\\Power", L"HibernateEnabled", 0);
+								}
+
+								if (bHiberbootEnabled)
+								{										
+									BootEncObj->WriteLocalMachineRegistryDwordValue (L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power", L"HiberbootEnabled", 0);
 								}
 							}
-							rebootRequired = true;
 						}
-						SetDriverConfigurationFlag (VC_DRIVER_CONFIG_ENABLE_RAM_ENCRYPTION, enableRamEncryption);
+						rebootRequired = true;
 					}
+					SetDriverConfigurationFlag (VC_DRIVER_CONFIG_ENABLE_RAM_ENCRYPTION, enableRamEncryption);
+
+					BOOL originalDisableMemoryProtection = !ReadMemoryProtectionConfig();
+					if(originalDisableMemoryProtection != bDisableMemoryProtection)
+						rebootRequired = true;
+					SetMemoryProtectionConfig (!bDisableMemoryProtection);
 
 					DWORD bytesReturned;
 					if (!DeviceIoControl (hDriver, TC_IOCTL_REREAD_DRIVER_CONFIG, NULL, 0, NULL, 0, &bytesReturned, NULL))
@@ -11839,6 +11862,24 @@ static BOOL CALLBACK PerformanceSettingsDlgProc (HWND hwndDlg, UINT msg, WPARAM 
 			}
 			return 1;
 
+		case IDC_DISABLE_MEMORY_PROTECTION:
+			{
+				BOOL disableMemoryProtection = IsDlgButtonChecked (hwndDlg, IDC_DISABLE_MEMORY_PROTECTION);
+				BOOL originalDisableMemoryProtection = !ReadMemoryProtectionConfig();
+				if (disableMemoryProtection != originalDisableMemoryProtection)
+				{
+					if (disableMemoryProtection)
+					{
+						Warning ("DISABLE_MEMORY_PROTECTION_WARNING", hwndDlg);
+					}
+
+					Warning ("SETTING_REQUIRES_REBOOT", hwndDlg);
+				}
+			}
+			return 1;
+		case IDC_DISABLE_MEMORY_PROTECTION_HELP:
+			Applink ("memoryprotection");
+			return 1;
 		case IDC_BENCHMARK:
 			Benchmark (hwndDlg);
 			return 1;

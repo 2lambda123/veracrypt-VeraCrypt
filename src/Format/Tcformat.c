@@ -1106,24 +1106,6 @@ BOOL SwitchWizardToSysEncMode (void)
 							if (AskWarnYesNoString ((wstring (GetString ("SYSDRIVE_NON_STANDARD_PARTITIONS")) + L"\n\n" + GetString ("ASK_ENCRYPT_PARTITION_INSTEAD_OF_DRIVE")).c_str(), MainDlg) == IDYES)
 								bWholeSysDrive = FALSE;
 						}
-
-						if (!IsOSAtLeast (WIN_VISTA) && bWholeSysDrive)
-						{
-							if (BootEncObj->SystemDriveContainsExtendedPartition())
-							{
-								bWholeSysDrive = FALSE;
-
-								Error ("WDE_UNSUPPORTED_FOR_EXTENDED_PARTITIONS", MainDlg);
-
-								if (AskYesNo ("ASK_ENCRYPT_PARTITION_INSTEAD_OF_DRIVE", MainDlg) == IDNO)
-								{
-									ChangeWizardMode (WIZARD_MODE_NONSYS_DEVICE);
-									return FALSE;
-								}
-							}
-							else
-								Warning ("WDE_EXTENDED_PARTITIONS_WARNING", MainDlg);
-						}
 					}
 					else if (BootEncObj->SystemPartitionCoversWholeDrive()
 						&& !bWholeSysDrive)
@@ -4493,9 +4475,11 @@ BOOL CALLBACK PageDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 				}
 
 				SetFocus (GetDlgItem (hwndDlg, IDC_PIM));
-
+                            #ifndef WOLFCRYPT_BACKEND
 				SetWindowTextW (GetDlgItem (hwndDlg, IDC_BOX_HELP), GetString (SysEncInEffect () && hash_algo != SHA512 && hash_algo != WHIRLPOOL? "PIM_SYSENC_HELP" : "PIM_HELP"));
-
+                            #else
+				SetWindowTextW (GetDlgItem (hwndDlg, IDC_BOX_HELP), GetString (SysEncInEffect () && hash_algo != SHA512? "PIM_SYSENC_HELP" : "PIM_HELP"));
+                            #endif
 				ToHyperlink (hwndDlg, IDC_LINK_PIM_INFO);
 
 				if (CreatingHiddenSysVol())
@@ -5102,7 +5086,7 @@ BOOL CALLBACK PageDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 					}
 
 					//exFAT support added starting from Vista SP1
-					if (IsOSVersionAtLeast (WIN_VISTA, 1) && dataAreaSize >= TC_MIN_EXFAT_FS_SIZE && dataAreaSize <= TC_MAX_EXFAT_FS_SIZE)
+					if (dataAreaSize >= TC_MIN_EXFAT_FS_SIZE && dataAreaSize <= TC_MAX_EXFAT_FS_SIZE)
 					{
 						AddComboPair (GetDlgItem (hwndDlg, IDC_FILESYS), L"exFAT", FILESYS_EXFAT);
 						bEXFATallowed = TRUE;
@@ -5921,7 +5905,7 @@ BOOL CALLBACK PageDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			{
 				// Select file
 
-				if (BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, !bHiddenVolDirect, NULL) == FALSE)
+				if (BrowseFiles (hwndDlg, "OPEN_TITLE", szFileName, bHistory, !bHiddenVolDirect) == FALSE)
 					return 1;
 
 				AddComboItem (GetDlgItem (hwndDlg, IDC_COMBO_BOX), szFileName, bHistory);
@@ -6112,7 +6096,7 @@ BOOL CALLBACK PageDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			{
 				wchar_t tmpszRescueDiskISO [TC_MAX_PATH+1];
 
-				if (!BrowseFiles (hwndDlg, "OPEN_TITLE", tmpszRescueDiskISO, FALSE, TRUE, NULL))
+				if (!BrowseFiles (hwndDlg, "OPEN_TITLE", tmpszRescueDiskISO, FALSE, TRUE))
 					return 1;
 
 				StringCbCopyW (szRescueDiskISO, sizeof(szRescueDiskISO), tmpszRescueDiskISO);
@@ -6257,7 +6241,7 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			if (EnableMemoryProtection)
 			{
 				/* Protect this process memory from being accessed by non-admin users */
-				EnableProcessProtection ();
+				ActivateMemoryProtection ();
 			}
 
 			if (ComServerMode)
@@ -6424,13 +6408,6 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 					}
 				}
 
-				/* Verify that the volume would not be too large for the operating system */
-				if (!IsOSAtLeast (WIN_VISTA)
-					&& nVolumeSize > 2 * BYTES_PER_TB)
-				{
-					AbortProcess ("VOLUME_TOO_LARGE_FOR_WINXP");
-				}
-
 				if (volumePassword.Length > 0)
 				{
 					// Check password length (check also done for outer volume which is not the case in TrueCrypt).
@@ -6456,12 +6433,9 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			else
 				StringCbCatW (szRescueDiskISO, sizeof(szRescueDiskISO), L"\\VeraCrypt Rescue Disk.iso");
 
-			if (IsOSAtLeast (WIN_VISTA))
-			{
-				// Availability of in-place encryption (which is pre-selected by default whenever
-				// possible) makes partition-hosted volume creation safer.
-				bWarnDeviceFormatAdvanced = FALSE;
-			}
+			// Availability of in-place encryption (which is pre-selected by default whenever
+			// possible) makes partition-hosted volume creation safer.
+			bWarnDeviceFormatAdvanced = FALSE;
 
 #ifdef _DEBUG
 			// For faster testing
@@ -7238,21 +7212,6 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 							if (AskWarnYesNoString ((wstring (GetString ("SYSDRIVE_NON_STANDARD_PARTITIONS")) + L"\n\n" + GetString ("ASK_ENCRYPT_PARTITION_INSTEAD_OF_DRIVE")).c_str(), MainDlg) == IDYES)
 								bWholeSysDrive = FALSE;
 						}
-
-						if (!IsOSAtLeast (WIN_VISTA) && bWholeSysDrive)
-						{
-							if (BootEncObj->SystemDriveContainsExtendedPartition())
-							{
-								Error ("WDE_UNSUPPORTED_FOR_EXTENDED_PARTITIONS", MainDlg);
-
-								if (AskYesNo ("ASK_ENCRYPT_PARTITION_INSTEAD_OF_DRIVE", MainDlg) == IDNO)
-									return 1;
-
-								bWholeSysDrive = FALSE;
-							}
-							else
-								Warning ("WDE_EXTENDED_PARTITIONS_WARNING", hwndDlg);
-						}
 					}
 
 					if (!bWholeSysDrive && BootEncObj->SystemPartitionCoversWholeDrive())
@@ -7310,8 +7269,7 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 
 				if (bHiddenOS)
 				{
-					if (IsOSAtLeast (WIN_7)
-						&& BootEncObj->GetSystemDriveConfiguration().ExtraBootPartitionPresent
+					if (BootEncObj->GetSystemDriveConfiguration().ExtraBootPartitionPresent
 						&& AskWarnYesNo ("CONFIRM_HIDDEN_OS_EXTRA_BOOT_PARTITION", hwndDlg) == IDNO)
 					{
 						TextInfoDialogBox (TC_TBXID_EXTRA_BOOT_PARTITION_REMOVAL_INSTRUCTIONS);
@@ -7680,13 +7638,6 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 						}
 					}
 
-					/* Verify that the volume would not be too large for the operating system */
-
-					if (!IsOSAtLeast (WIN_VISTA)
-						&& nUIVolumeSize * nMultiplier > 2 * BYTES_PER_TB)
-					{
-						Warning ("VOLUME_TOO_LARGE_FOR_WINXP", hwndDlg);
-					}
 				}
 
 				if (bHiddenVol && !bHiddenVolHost)	// If it's a hidden volume
@@ -9289,7 +9240,7 @@ void ExtractCommandLine (HWND hwndDlg, wchar_t *lpszCommandLine)
 							CmdVolumeFilesystem = FILESYS_FAT;
 						else if (_wcsicmp(szTmp, L"NTFS") == 0)
 							CmdVolumeFilesystem = FILESYS_NTFS;
-						else if (IsOSVersionAtLeast (WIN_VISTA, 1) && _wcsicmp(szTmp, L"EXFAT") == 0)
+						else if (_wcsicmp(szTmp, L"EXFAT") == 0)
 							CmdVolumeFilesystem = FILESYS_EXFAT;
 						else if (IsOSVersionAtLeast (WIN_10, 0) && _wcsicmp(szTmp, L"ReFS") == 0)
 							CmdVolumeFilesystem = FILESYS_REFS;
@@ -10650,10 +10601,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 
 	InitApp (hInstance, lpszCommandLine);
 
-	// Write block size greater than 64 KB causes a performance drop when writing to files on XP/Vista
-	if (!IsOSAtLeast (WIN_7))
-		FormatWriteBufferSize = 64 * 1024;
-
 #if TC_MAX_VOLUME_SECTOR_SIZE > 64 * 1024
 #error TC_MAX_VOLUME_SECTOR_SIZE > 64 * 1024
 #endif
@@ -10694,7 +10641,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 	DialogBoxParamW (hInstance, MAKEINTRESOURCEW (IDD_VOL_CREATION_WIZARD_DLG), NULL, (DLGPROC) MainDialogProc,
 		(LPARAM)lpszCommandLine);
 
-	FinalizeApp ();
 	return 0;
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="id" name="Bahasa Indonesia" en-name="Indonesian" version="1.0.0" translators="Tajuddin N. F.; Transifex contributors" />
     <font lang="id" class="normal" size="11" face="default" />
     <font lang="id" class="bold" size="13" face="Arial" />
@@ -613,7 +613,7 @@
     <entry lang="id" key="FAVORITE_PIM_CHANGED">Volume ini terdaftar sebagai Favorit Sistem dan PIM-nya diubah.\n Apakah Anda ingin VeraCrypt secara otomatis memperbarui konfigurasi System Favorite (hak administrator diperlukan) mencatat bahwa jika Anda menjawab tidak, Anda harus memperbarui Sistem Favorit secara manual.</entry>
     <entry lang="id" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">PENTING: Jika Anda tidak menghancurkan Disk Penyelamatan VeraCrypt, partisi/drive sistem Anda masih dapat didekripsi menggunakan kata sandi lama (dengan mem-boot Disk Penyelamatan VeraCrypt dan memasukkan kata sandi lama). Anda harus membuat Disk Penyelamatan VeraCrypt baru dan kemudian menghancurkan yang lama.\n\nApakah Anda hendak membuat sebuah Disk Penyelamatan VeraCrypt yang baru?</entry>
     <entry lang="id" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Perhatikan bahwa Disk Penyelamatan VeraCrypt Anda masih menggunakan algoritma sebelumnya. Jika Anda menganggap algoritma sebelumnya tidak aman, Anda harus membuat Disk Penyelamatan VeraCrypt baru dan kemudian menghancurkan yang lama.\n\nApakah Anda hendak membuat sebuah Disk Penyelamatan VeraCrypt yang baru?</entry>
-    <entry lang="id" key="KEYFILES_NOTE">Setiap jenis file (misalnya, .mp3, .jpg, .zip, .avi) dapat digunakan sebagai keyfile VeraCrypt. Perhatikan bahwa VeraCrypt tidak pernah memodifikasi isi keyfile. Anda dapat memilih lebih dari satu keyfile (urutan tidak masalah). Jika Anda menambahkan folder, semua file yang tidak tersembunyi yang ditemukan di dalamnya akan digunakan sebagai keyfiles. Klik 'Tambahkan File Token' untuk memilih keyfile yang disimpan pada token keamanan atau kartu pintar (atau untuk mengimpor keyfiles ke token keamanan atau kartu pintar).</entry>
+    <entry lang="id" key="KEYFILES_NOTE">Perhatikan bahwa VeraCrypt tidak pernah memodifikasi isi keyfile. Anda dapat memilih lebih dari satu keyfile (urutan tidak masalah). Jika Anda menambahkan folder, semua file yang tidak tersembunyi yang ditemukan di dalamnya akan digunakan sebagai keyfiles. Klik 'Tambahkan File Token' untuk memilih keyfile yang disimpan pada token keamanan atau kartu pintar (atau untuk mengimpor keyfiles ke token keamanan atau kartu pintar).</entry>
     <entry lang="id" key="KEYFILE_CHANGED">Berkas kunci sukses ditambahkan/dihapus.</entry>
     <entry lang="id" key="KEYFILE_EXPORTED">Berkas kunci diekspor.</entry>
     <entry lang="id" key="PKCS5_PRF_CHANGED">Algoritma derivasi kunci header berhasil diatur.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="id" key="LINUX_LANGUAGE">Bahasa</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

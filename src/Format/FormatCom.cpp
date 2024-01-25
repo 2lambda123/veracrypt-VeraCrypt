@@ -187,6 +187,11 @@ public:
 		return BaseCom::NotifyService (dwNotifyCode);
 	}
 
+	virtual DWORD STDMETHODCALLTYPE FastFileResize (BSTR filePath, __int64 fileSize)
+	{
+		return BaseCom::FastFileResize (filePath, fileSize);
+	}
+
 protected:
 	DWORD MessageThreadId;
 	LONG RefCount;
@@ -250,7 +255,7 @@ extern "C" int UacFormatNtfs (HWND hWnd, int driveNo, int clusterSize)
 	CComPtr<ITrueCryptFormatCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hWnd, &tc))
 		r = tc->FormatNtfs (driveNo, clusterSize);
@@ -267,7 +272,7 @@ extern "C" int UacFormatFs (HWND hWnd, int driveNo, int clusterSize, int fsType)
 	CComPtr<ITrueCryptFormatCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hWnd, &tc))
 		r = tc->FormatFs (driveNo, clusterSize, fsType);
@@ -285,7 +290,7 @@ extern "C" int UacAnalyzeHiddenVolumeHost (HWND hwndDlg, int *driveNo, __int64 h
 	CComPtr<ITrueCryptFormatCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hwndDlg, &tc))
 		r = tc->AnalyzeHiddenVolumeHost ((__int64) hwndDlg, driveNo, hiddenVolHostSize, realClusterSize, nbrFreeClusters);
@@ -302,7 +307,7 @@ extern "C" BOOL UacWriteLocalMachineRegistryDword (HWND hwndDlg, wchar_t *keyPat
 	CComPtr<ITrueCryptFormatCom> tc;
 	int r = 0;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hwndDlg, &tc))
 	{
@@ -335,3 +340,29 @@ extern "C" BOOL UacWriteLocalMachineRegistryDword (HWND hwndDlg, wchar_t *keyPat
 	}
 }
 
+extern "C" DWORD UacFastFileCreation (HWND hWnd, wchar_t* filePath, __int64 fileSize)
+{
+	CComPtr<ITrueCryptFormatCom> tc;
+	DWORD r;
+
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+
+	if (ComGetInstance (hWnd, &tc))
+	{
+		CComBSTR filePathBstr;
+		BSTR bstr = W2BSTR(filePath);
+		if (bstr)
+		{
+			filePathBstr.Attach (bstr);
+			r = tc->FastFileResize (filePathBstr, fileSize);
+		}
+		else
+			r = ERROR_OUTOFMEMORY;
+	}
+	else
+		r = GetLastError();
+
+	CoUninitialize ();
+
+	return r;
+}

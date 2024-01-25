@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <!-- Sprachen -->
     <language langid="de" name="Deutsch" en-name="German" version="1.1.8" translators="Harry Haller, Alexander Schorg, Simon Frankenberger, David Arndt, H. Sauer, Dulla, Ettore Atalan, Matthias Kolja Miehl, Felix Reichmann" />
     <!-- Schriftarten -->
@@ -616,7 +616,7 @@
     <entry lang="de" key="FAVORITE_PIM_CHANGED">Dieses Volume ist ein Systemfavorit und sein PIM wurde geändert.\nMöchten Sie, dass VeraCrypt automatisch die Einstellung des Systemfavoriten aktualisiert (Administratorrechte werden benötigt)?\n\nBitte beachten Sie: Wenn Sie mit „Nein“ antworten, müssen Sie den Systemfavoriten manuell aktualisieren.</entry>
     <entry lang="de" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">WICHTIG: Wenn Sie Ihren VeraCrypt-Rettungsdatenträger nicht zerstört haben, dann kann Ihre Systempartition/Ihr Systemlaufwerk weiterhin mit dem alten Passwort entschlüsselt werden (durch Starten des VeraCrypt-Rettungsdatenträgers und die Eingabe des alten Passwortes). Sie sollten einen neuen VeraCrypt-Rettungsdatenträger erstellen und den alten vernichten.\n\nMöchten Sie einen neuen Rettungsdatenträger erstellen?</entry>
     <entry lang="de" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Beachten Sie, dass Ihr VeraCrypt-Rettungsdatenträger weiterhin den vorherigen Algorithmus verwendet. Wenn Sie den vorherigen Algorithmus als unsicher einstufen, dann sollten Sie einen neuen VeraCrypt-Rettungsdatenträger erstellen und den alten vernichten.\n\nMöchten Sie einen neuen Rettungsdatenträger erstellen?</entry>
-    <entry lang="de" key="KEYFILES_NOTE">Jede Art von Datei (z. B. MP3, JPG, ZIP) kann als VeraCrypt-Schlüsseldatei genutzt werden. VeraCrypt ändert niemals den Inhalt der Schlüsseldatei. Sie können mehr als eine Schlüsseldatei wählen (die Reihenfolge ist egal). Wenn Sie einen Ordner hinzufügen, werden alle nicht versteckten Dateien darin als Schlüsseldateien verwendet. Klicken Sie auf „Token/Smartcard“, um Schlüsseldateien zu wählen, die auf Sicherheitstokens/Smartcards gespeichert sind (oder um Schlüsseldateien dort zu speichern).</entry>
+    <entry lang="de" key="KEYFILES_NOTE">VeraCrypt ändert niemals den Inhalt der Schlüsseldatei. Sie können mehr als eine Schlüsseldatei wählen (die Reihenfolge ist egal). Wenn Sie einen Ordner hinzufügen, werden alle nicht versteckten Dateien darin als Schlüsseldateien verwendet. Klicken Sie auf „Token/Smartcard“, um Schlüsseldateien zu wählen, die auf Sicherheitstokens/Smartcards gespeichert sind (oder um Schlüsseldateien dort zu speichern).</entry>
     <entry lang="de" key="KEYFILE_CHANGED">Schlüsseldatei(en) wurde(n) erfolgreich hinzugefügt/entfernt.</entry>
     <entry lang="de" key="KEYFILE_EXPORTED">Schlüsseldatei exportiert.</entry>
     <entry lang="de" key="PKCS5_PRF_CHANGED">Der Algorithmus für die Kopfdatenschlüsselberechnung wurde erfolgreich geändert.</entry>
@@ -1634,6 +1634,13 @@
     <entry lang="de" key="EXPANDER_MOUNTING_VOLUME">Volume einhängen ...\n</entry>
     <entry lang="de" key="EXPANDER_UNMOUNTING_VOLUME">Volume trennen ...\n</entry>
     <entry lang="de" key="EXPANDER_EXTENDING_FILESYSTEM">Dateisystem erweitern ...\n</entry>
+    <entry lang="de" key="PARTIAL_SYSENC_MOUNT_READONLY">WARNUNG: Die Systempartition, die Sie einzuhängen versucht haben, war nicht vollständig verschlüsselt. Als Sicherheitsmaßnahme wurde das Volume '%s' schreibgeschützt eingehängt, um mögliche Beschädigungen oder unerwünschte Änderungen zu verhindern.</entry>
+    <entry lang="de" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Wichtige Informationen zur Verwendung von Dateierweiterungen von Drittanbietern</entry>
+    <entry lang="de" key="IDC_DISABLE_MEMORY_PROTECTION">Deaktivieren Sie den Speicherschutz für die Kompatibilität der Eingabehilfen</entry>
+    <entry lang="de" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNUNG: Die Deaktivierung des Speicherschutzes verringert die Sicherheit erheblich. Aktivieren Sie diese Option NUR, wenn Sie sich bei der Interaktion mit VeraCrypt auf Eingabehilfen wie Sprachausgabe verlassen.</entry>
+    <entry lang="de" key="LINUX_LANGUAGE">Sprache</entry>
+    <entry lang="de" key="LINUX_SELECT_SYS_DEFAULT_LANG">Wählen Sie die Standardsprache des Systems</entry>
+    <entry lang="de" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">Damit die Sprachänderung in Kraft treten kann, muss VeraCrypt neu gestartet werden.</entry>
   </localization>
   <!-- XML-Schema -->
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">

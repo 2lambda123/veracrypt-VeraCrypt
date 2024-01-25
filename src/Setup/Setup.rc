@@ -28,8 +28,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,26,4,0
- PRODUCTVERSION 1,26,4,0
+ FILEVERSION 1,26,10,0
+ PRODUCTVERSION 1,26,10,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -46,11 +46,11 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "IDRIX"
             VALUE "FileDescription", "VeraCrypt Setup"
-            VALUE "FileVersion", "1.26.4"
+            VALUE "FileVersion", "1.26.10"
             VALUE "LegalTrademarks", "VeraCrypt"
             VALUE "OriginalFilename", "VeraCrypt Setup.exe"
             VALUE "ProductName", "VeraCrypt"
-            VALUE "ProductVersion", "1.26.4"
+            VALUE "ProductVersion", "1.26.10"
         END
     END
     BLOCK "VarFileInfo"
@@ -146,12 +146,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     EDITTEXT        IDC_DESTINATION,11,41,260,13,ES_AUTOHSCROLL
     PUSHBUTTON      "Bro&wse...",IDC_BROWSE,278,40,59,14
-    CONTROL         "Install &for all users",IDC_ALL_USERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,77,168,11
+    CONTROL         "Install &for all users",IDC_ALL_USERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,68,168,11
+    CONTROL         "Add VeraCrypt to &Start menu",IDC_PROG_GROUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,80,168,11
+    CONTROL         "Add VeraCrypt icon to &desktop",IDC_DESKTOP_ICON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,92,168,11
     CONTROL         "Associate the .hc file &extension with VeraCrypt",IDC_FILE_TYPE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,113,232,11
-    CONTROL         "Add VeraCrypt to &Start menu",IDC_PROG_GROUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,89,168,11
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,104,232,11
+    CONTROL         "Disable memory protection for Accessibility tools compatibility",IDC_DISABLE_MEMORY_PROTECTION,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,115,315,10
+    PUSHBUTTON      "?",IDC_DISABLE_MEMORY_PROTECTION_HELP,337,111,7,14
     CONTROL         "Create System &Restore point",IDC_SYSTEM_RESTORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,125,194,11
-    CONTROL         "Add VeraCrypt icon to &desktop",IDC_DESKTOP_ICON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,101,168,11
     LTEXT           "Please select or type the location where you want to install the VeraCrypt program files. If the specified folder does not exist, it will be automatically created.",IDT_INSTALL_DESTINATION,11,14,319,25
 END
 

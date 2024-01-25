@@ -25,11 +25,11 @@ namespace VeraCrypt
 #ifndef TC_WINDOWS
 	wstring ArrayToHexWideString(const unsigned char * pbData, size_t cbData)
 	{
-		static wchar_t* hexChar = L"0123456789ABCDEF";
+		static const wchar_t* hexChar = L"0123456789ABCDEF";
 		wstring result;
 		if (pbData)
 		{
-			for (int i = 0; i < cbData; i++)
+			for (size_t i = 0; i < cbData; i++)
 			{
 				result += hexChar[pbData[i] >> 4];
 				result += hexChar[pbData[i] & 0x0F];
@@ -43,9 +43,9 @@ namespace VeraCrypt
 	map<EMVCardType, vector<byte>> InitializeSupportedAIDs()
 	{
 		map<EMVCardType, vector<byte>> supportedAIDs;
-		supportedAIDs.insert(std::make_pair(EMVCardType::AMEX, vector<byte>(EMVCard::AMEX_AID, EMVCard::AMEX_AID + (std::end(EMVCard::AMEX_AID) - std::begin(EMVCard::AMEX_AID)))));
-		supportedAIDs.insert(std::make_pair(EMVCardType::MASTERCARD, vector<byte>(EMVCard::MASTERCARD_AID, EMVCard::MASTERCARD_AID + (std::end(EMVCard::MASTERCARD_AID) - std::begin(EMVCard::MASTERCARD_AID)))));
-		supportedAIDs.insert(std::make_pair(EMVCardType::VISA, vector<byte>(EMVCard::VISA_AID, EMVCard::VISA_AID + (std::end(EMVCard::VISA_AID) - std::begin(EMVCard::VISA_AID)))));
+		supportedAIDs.insert(std::make_pair(EMVCardType::AMEX, vector<byte>(EMVCard::AMEX_AID, EMVCard::AMEX_AID + sizeof(EMVCard::AMEX_AID))));
+		supportedAIDs.insert(std::make_pair(EMVCardType::MASTERCARD, vector<byte>(EMVCard::MASTERCARD_AID, EMVCard::MASTERCARD_AID + sizeof(EMVCard::MASTERCARD_AID))));
+		supportedAIDs.insert(std::make_pair(EMVCardType::VISA, vector<byte>(EMVCard::VISA_AID, EMVCard::VISA_AID + sizeof(EMVCard::VISA_AID))));
 		return supportedAIDs;
 	}
 

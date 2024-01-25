@@ -39,6 +39,7 @@ namespace VeraCrypt
 			DismountOnScreenSaver (false),
 			DisplayMessageAfterHotkeyDismount (false),
 			ForceAutoDismount (true),
+			Language (L"system"),
 			LastSelectedSlotNumber (0),
 			MaxVolumeIdleTime (60),
 			MountDevicesOnLogon (false),
@@ -81,6 +82,7 @@ namespace VeraCrypt
 		bool DismountOnScreenSaver;
 		bool DisplayMessageAfterHotkeyDismount;
 		bool ForceAutoDismount;
+		wstring Language;
 		uint64 LastSelectedSlotNumber;
 		int32 MaxVolumeIdleTime;
 		bool MountDevicesOnLogon;
@@ -95,6 +97,10 @@ namespace VeraCrypt
 		bool Verbose;
 		bool WipeCacheOnAutoDismount;
 		bool WipeCacheOnClose;
+
+		// A map used to store unknown entries from the configuration file in order to preserve them when saving the configuration.
+		// This helps to preserve unknown entries that may be used by future versions of VeraCrypt or entries used by old versions that were removed from current version.
+		map <wxString, wxString> UnknownConfigMapEntries;
 
 	protected:
 		wxString GetDefaultKeyfilesFileName () const { return L"Default Keyfiles.xml"; }

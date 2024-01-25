@@ -208,6 +208,11 @@ public:
 		return BaseCom::NotifyService (dwNotifyCode);
 	}
 
+	virtual DWORD STDMETHODCALLTYPE FastFileResize (BSTR filePath, __int64 fileSize)
+	{
+		return BaseCom::FastFileResize (filePath, fileSize);
+	}
+
 protected:
 	DWORD MessageThreadId;
 	LONG RefCount;
@@ -270,7 +275,7 @@ extern "C" int UacBackupVolumeHeader (HWND hwndDlg, BOOL bRequireConfirmation, w
 	CComPtr<ITrueCryptMainCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hwndDlg, &tc))
 	{
@@ -298,7 +303,7 @@ extern "C" int UacRestoreVolumeHeader (HWND hwndDlg, wchar_t *lpszVolume)
 	CComPtr<ITrueCryptMainCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hwndDlg, &tc))
 	{
@@ -326,7 +331,7 @@ extern "C" int UacChangePwd (wchar_t *lpszVolume, Password *oldPassword, int old
 	CComPtr<ITrueCryptMainCom> tc;
 	int r;
 
-	CoInitialize (NULL);
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	if (ComGetInstance (hwndDlg, &tc))
 	{

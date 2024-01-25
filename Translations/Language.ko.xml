@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="ko" name="한국어" en-name="Korean" version="0.2.0" translators="Kieaer, Herbert Shin, BaekMu" />
     <font lang="ko" class="normal" size="11" face="돋움" />
     <font lang="ko" class="bold" size="13" face="맑은 고딕" />
@@ -613,7 +613,7 @@
     <entry lang="ko" key="FAVORITE_PIM_CHANGED">이 볼륨은 시스템 즐겨찾기로 등록되어 PIM이 변경되었습니다.\nVeraCrypt가 시스템 즐겨찾기 구성을 자동으로 업데이트하도록 할까요? (관리자 권한 필요)\n\n아니오라고 대답할 경우 시스템 즐겨찾기를 수동으로 업데이트해야 합니다.</entry>
     <entry lang="ko" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">중요: VeraCrypt 응급 복구 디스크를 폐기하지 않은 경우 이전 암호를 사용하여 시스템 파티션/드라이브를 해독 할 수 있습니다(VeraCrypt 응급 복구 디스크를 부팅하고 이전 암호 입력). 새로운 VeraCrypt 응급 복구 디스크를 작성한 다음 이전 버전을 폐기해야합니다.\n\n새로운 VeraCrypt 응급 복구 디스크를 만드시겠습니까?</entry>
     <entry lang="ko" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">VeraCrypt 응급 복구 디스크는 여전히 이전 알고리즘을 사용합니다. 이전의 알고리즘이 안전하지 않다고 생각하면 새로운 VeraCrypt 응급 복구 디스크를 생성 한 다음 이전 VeraCrypt 응급 복구 디스크를 폐기해야합니다.\n\n새로운 VeraCrypt 응급 복구 디스크를 만드시겠습니까?</entry>
-    <entry lang="ko" key="KEYFILES_NOTE">모든 종류의 파일 (예 :.mp3,.jpg,.zip,.avi)은 VeraCrypt 키 파일로 사용될 수 있습니다. VeraCrypt는 키 파일 내용을 수정하지 않습니다. 둘 이상의 키 파일을 선택할 수 있습니다(순서는 중요하지 않음). 폴더를 추가하면 그 안에있는 숨겨진 파일이 아닌 모든 키 파일이 키 파일로 사용됩니다. '토큰 파일 추가'를 클릭하여 보안 토큰 또는 스마트 카드에 저장된 키 파일을 선택하거나 키 파일을 보안 토큰 또는 스마트 카드로 가져옵니다.</entry>
+    <entry lang="ko" key="KEYFILES_NOTE">VeraCrypt는 키 파일 내용을 수정하지 않습니다. 둘 이상의 키 파일을 선택할 수 있습니다(순서는 중요하지 않음). 폴더를 추가하면 그 안에있는 숨겨진 파일이 아닌 모든 키 파일이 키 파일로 사용됩니다. '토큰 파일 추가'를 클릭하여 보안 토큰 또는 스마트 카드에 저장된 키 파일을 선택하거나 키 파일을 보안 토큰 또는 스마트 카드로 가져옵니다.</entry>
     <entry lang="ko" key="KEYFILE_CHANGED">키 파일이 성공적으로 추가/제거되었습니다.</entry>
     <entry lang="ko" key="KEYFILE_EXPORTED">키 파일을 내보냄.</entry>
     <entry lang="ko" key="PKCS5_PRF_CHANGED">헤더 키 유도 알고리즘이 성공적으로 설정되었습니다.</entry>
@@ -1523,7 +1523,7 @@
     <entry lang="ko" key="LINUX_NOT_SUPPORTED"> (이 플랫폼의 구성요소로는 지원되지 않습니다).\n</entry>
     <entry lang="ko" key="LINUX_KERNEL_OLD">시스템이 오래된 Linux 커널을 사용하고 있습니다.\n\nLinux 커널의 버그로 인해, VeraCrypt 볼륨으로 데이터 작성 중에 시스템이 응답을 중단할 수도 있습니다. 이 문제는 커널을 2.6.24 혹은 더 높은 버전으로 업그레이드하면 해결됩니다.</entry>
     <entry lang="ko" key="LINUX_VOL_DISMOUNTED">{0} 볼륨이 마운트 해제되었습니다.</entry>
-    <entry lang="ko" key="LINUX_VOL_MOUNTED"{0} 볼륨이 마운트되었습니다.</entry>
+    <entry lang="ko" key="LINUX_VOL_MOUNTED">{0} 볼륨이 마운트되었습니다.</entry>
     <entry lang="ko" key="LINUX_OOM">메모리 부족.</entry>
     <entry lang="ko" key="LINUX_CANT_GET_ADMIN_PRIV">관리자 권한을 취득하는데에 실패했습니다.</entry>
     <entry lang="ko" key="LINUX_COMMAND_GET_ERROR">{0} 명령어가 {1} 오류를 반환하였습니다.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="ko" key="LINUX_LANGUAGE">언어</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

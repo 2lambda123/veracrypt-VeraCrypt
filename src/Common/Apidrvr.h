@@ -166,6 +166,7 @@ typedef struct
 	BOOL RecoveryMode;
 	int pkcs5_prf;
 	int ProtectedHidVolPkcs5Prf;
+	BOOL VolumeMountedReadOnlyAfterPartialSysEnc;
 	uint32 BytesPerPhysicalSector;
 	int VolumePim;
 	int ProtectedHidVolPim;
@@ -416,6 +417,8 @@ typedef struct
 #define VC_ENCRYPTION_FRAGMENT_SIZE DRIVER_STR("VeraCryptEncryptionFragmentSize")
 
 #define VC_ERASE_KEYS_SHUTDOWN DRIVER_STR("VeraCryptEraseKeysShutdown")
+
+#define VC_ENABLE_MEMORY_PROTECTION DRIVER_STR("VeraCryptEnableMemoryProtection")
 
 // WARNING: Modifying the following values can introduce incompatibility with previous versions.
 #define TC_DRIVER_CONFIG_CACHE_BOOT_PASSWORD						0x1

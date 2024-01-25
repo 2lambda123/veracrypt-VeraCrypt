@@ -12,6 +12,9 @@
 
 #include "System.h"
 #include "Volume/EncryptionModeXTS.h"
+#ifdef WOLFCRYPT_BACKEND
+#include "Volume/EncryptionModeWolfCryptXTS.h"
+#endif
 #include "Main/GraphicUserInterface.h"
 #include "BenchmarkDialog.h"
 
@@ -42,10 +45,10 @@ namespace VeraCrypt
 		BufferSizeChoice->Select (1);
 		
 		UpdateBenchmarkList ();
-		
-		wxTextValidator validator (wxFILTER_INCLUDE_CHAR_LIST);  // wxFILTER_NUMERIC does not exclude - . , etc.
-		const wxChar *valArr[] = { L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8", L"9" };
-		validator.SetIncludes (wxArrayString (array_capacity (valArr), (const wxChar **) &valArr));
+
+		VolumePimText->SetMinSize (wxSize (Gui->GetCharWidth (VolumePimText) * 15, -1));
+
+		wxTextValidator validator (wxFILTER_DIGITS);
 		VolumePimText->SetValidator (validator);
 
 		Layout();
@@ -209,9 +212,13 @@ namespace VeraCrypt
 
 						Buffer key (ea->GetKeySize());
 						ea->SetKey (key);
-
+                                            #ifdef WOLFCRYPT_BACKEND
+						shared_ptr <EncryptionMode> xts (new EncryptionModeWolfCryptXTS);
+						ea->SetKeyXTS (key);
+                                            #else
 						shared_ptr <EncryptionMode> xts (new EncryptionModeXTS);
-						xts->SetKey (key);
+                                            #endif
+                                                xts->SetKey (key);
 						ea->SetMode (xts);
 
 						wxLongLong startTime = wxGetLocalTimeMillis();

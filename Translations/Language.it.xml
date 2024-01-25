@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="it" name="Italiano" en-name="Italian" version="1.0.1" translators="Maurizio Ballo, Consiglio Gaetano" />
     <font lang="it" class="normal" size="11" face="default" />
     <font lang="it" class="bold" size="13" face="Arial" />
@@ -72,7 +72,7 @@
     <entry lang="it" key="IDC_WHOLE_SYS_DRIVE">Codifica l'intero disco</entry>
     <entry lang="it" key="IDD_VOL_CREATION_WIZARD_DLG">Creazione guidata volume VeraCrypt</entry>
     <entry lang="it" key="IDT_CLUSTER">Cluster</entry>
-    <entry lang="it" key="IDT_COLLECTING_RANDOM_DATA_NOTE">IMPORTANTE: sposta il mouse il più casualmente possibile entro questa finestra.\nE' preferibile un movimento più lungo perchè aumenta in modo significativo l'effetto delle chiavi di codifica.\nQuindi fai click su 'Avanti' per continuare</entry>
+    <entry lang="it" key="IDT_COLLECTING_RANDOM_DATA_NOTE">IMPORTANTE: sposta il mouse il più casualmente possibile dentro questa finestra.\nE' preferibile muovere il mouse per più tempo, perchè aumenta in modo significativo la sicurezza delle chiavi di codifica.\nQuindi fai click su 'Avanti' per continuare</entry>
     <entry lang="it" key="IDT_CONFIRM">Conferma:</entry>
     <entry lang="it" key="IDT_DONE">Fatto</entry>
     <entry lang="it" key="IDT_DRIVE_LETTER">Lettera unità:</entry>
@@ -128,7 +128,7 @@
     <entry lang="it" key="IDC_FAVORITE_MOUNT_ON_ARRIVAL">Montare il volume selezionato quando la sua periferica ospite viene &amp;connessa</entry>
     <entry lang="it" key="IDC_FAVORITE_MOUNT_ON_LOGON">Montare il volume selezionato dopo il log&amp;on</entry>
     <entry lang="it" key="IDC_FAVORITE_MOUNT_READONLY">Montare il volume selezionato in sola let&amp;tura</entry>
-    <entry lang="it" key="IDC_FAVORITE_MOUNT_REMOVABLE">Montare il volume selezionato come ,media rimo&amp;vibile</entry>
+    <entry lang="it" key="IDC_FAVORITE_MOUNT_REMOVABLE">Montare il volume selezionato come Media rimo&amp;vibile</entry>
     <entry lang="it" key="IDC_FAVORITE_MOVE_DOWN">Muovi &amp;giù</entry>
     <entry lang="it" key="IDC_FAVORITE_MOVE_UP">Muovi &amp;sù</entry>
     <entry lang="it" key="IDC_FAVORITE_OPEN_EXPLORER_WIN_ON_MOUNT">Aprire la &amp;finestra di explorer per il volume selezionato quando viene montato con successo</entry>
@@ -364,7 +364,7 @@
     <entry lang="it" key="IDT_PLAINTEXT_SIZE_UNIT">bits</entry>
     <entry lang="it" key="IDT_POOL_CONTENTS">Contenuto attuale del pool</entry>
     <entry lang="it" key="IDT_PRF">Miscelazione PRF:</entry>
-    <entry lang="it" key="IDT_RANDOM_POOL_ENRICHMENT_NOTE">IMPORTANTE: Dovete muovere il vostro mouse il più a caso possibile all'interno di questa finestra.\nE'preferibile un movimento lungo.\nQuesto aumenta la sicurezza in maniera significativa.\nQuando fatto questo, fate click su 'Continua'.</entry>
+    <entry lang="it" key="IDT_RANDOM_POOL_ENRICHMENT_NOTE">IMPORTANTE: sposta il mouse il più casualmente possibile dentro questa finestra.\nE' preferibile muovere il mouse per più tempo\nQuesto aumenta la sicurezza in maniera significativa.\nQuindi fai click su 'Continua' per continuare</entry>
     <entry lang="it" key="IDT_SECONDARY_KEY">Chiave secondaria (esadecimale)</entry>
     <entry lang="it" key="IDT_SECURITY_TOKEN">Misura di sicurezza:</entry>
     <entry lang="it" key="IDT_SORT_METHOD">Ordinamento:</entry>
@@ -513,7 +513,7 @@
     <entry lang="it" key="NONSYS_INPLACE_DEC_FINISHED_NO_DRIVE_LETTER_AVAILABLE">Attenzione: Per essere in grado di accedere ai dati decifrati, una lettera del drive deve essere assegnata al volume decifrato. Comunque, nessuna lettera è disponibile al momento.\n\nPer favore liberare una lettera (per esempio, disconnettendo una chiavetta USB  un hard drive esterno, etc.) e poi premi OK.</entry>
     <entry lang="it" key="FORMAT_FINISHED_INFO">Il volume VeraCrypt è stato creato con successo.</entry>
     <entry lang="it" key="FORMAT_FINISHED_TITLE">Volume creato</entry>
-    <entry lang="it" key="FORMAT_HELP">IMPORTANTE:Muovere il vostro mouse il più casualmente possibile entro questa finestra. E' preferibile un movimento più lungo perchè aumenta in modo significativo l'effetto delle chiavi di codifica, quindi fate click su Formatta per creare il volume.</entry>
+    <entry lang="it" key="FORMAT_HELP">IMPORTANTE: sposta il mouse il più casualmente possibile dentro questa finestra.E' preferibile muovere il mouse per più tempo, perchè aumenta in modo significativo la sicurezza delle chiavi di codifica. Quindi fate click su Formatta per creare il volume.</entry>
     <entry lang="it" key="FORMAT_HIDVOL_HOST_HELP">Fate click su Formatta per creare il volume esterno. Per ulteriori informazioni, riferitevi alla documentazione.</entry>
     <entry lang="it" key="FORMAT_HIDVOL_HOST_TITLE">Formattazione del volume esterno</entry>
     <entry lang="it" key="FORMAT_HIDVOL_TITLE">Formattazione del volume nascosto</entry>
@@ -613,7 +613,7 @@
     <entry lang="it" key="FAVORITE_PIM_CHANGED">Questo volume è registrato come Preferito di sistema e il suo PIM è stato modificato.\nVuoi che VeraCrypt aggiorni automaticamente la configurazione del Preferito di sistema (sono richiesti i privilegi di amministratore)?\n\nSi prega di notare che se si risponde no, è necessario aggiornare il Preferito del sistema manualmente.</entry>
     <entry lang="it" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">IMPORTANTE: Se non avete distrutto il vostro disco di ripristino di VeraCrypt, la vostra partizione/disco di sistema può essere ancora deCrittata usando la vecchia password (tramite l'avvio del disco di ripristino di VeraCrypt e digitando la vecchia password). Dovete creare un nuovo disco di ripristino di VeraCrypt e quindi distruggere il vecchio.\n\nVolete creare un nuovo disco di ripristino di VeraCrypt?</entry>
     <entry lang="it" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Da notare che il vostro disco di ripristino di VeraCrypt usa ancora l'algoritmo precedente. Se considerate il precedente algoritmo non sicuro, dovete creare un nuovo disco di ripristino di VeraCrypt e distruggere il precedente.\n\nVolete creare un nuovo disco di ripristino di VeraCrypt?</entry>
-    <entry lang="it" key="KEYFILES_NOTE">Qualsiasi tipo di file (ad esempio Mp3, Jpg, Zip, Avi) può essere usato come un file-chiave di VeraCrypt. Si noti che VeraCrypt non modifica mai il contenuto del file-chiave. È possibile selezionare più di un file-chiave (l'ordine non ha importanza). Se si aggiunge una cartella, tutti i file non nascosti trovat in essa saranno usati come file-chiave. Cliccare su 'Aggiungi file chiave' per selezionare un file-chiave memorizzato su di un token di sicurezza o una smart card (o per importarvi il file-chiave).</entry>
+    <entry lang="it" key="KEYFILES_NOTE">Si noti che VeraCrypt non modifica mai il contenuto del file-chiave. È possibile selezionare più di un file-chiave (l'ordine non ha importanza). Se si aggiunge una cartella, tutti i file non nascosti trovat in essa saranno usati come file-chiave. Cliccare su 'Aggiungi file chiave' per selezionare un file-chiave memorizzato su di un token di sicurezza o una smart card (o per importarvi il file-chiave).</entry>
     <entry lang="it" key="KEYFILE_CHANGED">File chiave aggiunti/rimossi con successo.</entry>
     <entry lang="it" key="KEYFILE_EXPORTED">File chiave esportati.</entry>
     <entry lang="it" key="PKCS5_PRF_CHANGED">Algoritmo di derivazione della chiave di testata impostato con successo.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="it" key="LINUX_LANGUAGE">Lingua</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

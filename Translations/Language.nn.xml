@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="nn" name="Norsk Nynorsk" en-name="Norwegian (Nynorsk)" version="0.1.0" translators="Kjell Rune Helland" />
     <font lang="nn" class="normal" size="11" face="default" />
     <font lang="nn" class="bold" size="13" face="Arial " />
@@ -613,7 +613,7 @@
     <entry lang="en" key="FAVORITE_PIM_CHANGED">This volume is registered as a System Favorite and its PIM was changed.\nDo you want VeraCrypt to automatically update the System Favorite configuration (administrator privileges required)?\n\nPlease note that if you answer no, you'll have to update the System Favorite manually.</entry>
     <entry lang="en" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">IMPORTANT: If you did not destroy your VeraCrypt Rescue Disk, your system partition/drive can still be decrypted using the old password (by booting the VeraCrypt Rescue Disk and entering the old password). You should create a new VeraCrypt Rescue Disk and then destroy the old one.\n\nDo you want to create a new VeraCrypt Rescue Disk?</entry>
     <entry lang="en" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Note that your VeraCrypt Rescue Disk still uses the previous algorithm. If you consider the previous algorithm insecure, you should create a new VeraCrypt Rescue Disk and then destroy the old one.\n\nDo you want to create a new VeraCrypt Rescue Disk?</entry>
-    <entry lang="en" key="KEYFILES_NOTE">Any kind of file (for example, .mp3, .jpg, .zip, .avi) may be used as a VeraCrypt keyfile. Note that VeraCrypt never modifies the keyfile contents. You can select more than one keyfile (the order does not matter). If you add a folder, all non-hidden files found in it will be used as keyfiles. Click 'Add Token Files' to select keyfiles stored on security tokens or smart cards (or to import keyfiles to security tokens or smart cards).</entry>
+    <entry lang="en" key="KEYFILES_NOTE">Note that VeraCrypt never modifies the keyfile contents. You can select more than one keyfile (the order does not matter). If you add a folder, all non-hidden files found in it will be used as keyfiles. Click 'Add Token Files' to select keyfiles stored on security tokens or smart cards (or to import keyfiles to security tokens or smart cards).</entry>
     <entry lang="nn" key="KEYFILE_CHANGED">Nøkkelfil(er) lagt til/fjerna.</entry>
     <entry lang="en" key="KEYFILE_EXPORTED">Keyfile exported.</entry>
     <entry lang="nn" key="PKCS5_PRF_CHANGED">Hovud nøkkel derivasjons algorytme vellykka sett.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="nn" key="LINUX_LANGUAGE">Språk</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

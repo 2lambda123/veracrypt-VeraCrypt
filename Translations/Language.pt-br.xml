@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="pt-br" name="Português-Brasil" en-name="Portuguese (Brazil)" version="0.2.0" translators="Thiago C. L. Mendes, Lecidio S. Alencar , Lucas C. Ferreira, Transifex contributors" />
     <font lang="pt-br" class="normal" size="11" face="padrão" />
     <font lang="pt-br" class="bold" size="13" face="Arial" />
@@ -613,7 +613,7 @@
     <entry lang="en" key="FAVORITE_PIM_CHANGED">This volume is registered as a System Favorite and its PIM was changed.\nDo you want VeraCrypt to automatically update the System Favorite configuration (administrator privileges required)?\n\nPlease note that if you answer no, you'll have to update the System Favorite manually.</entry>
     <entry lang="pt-br" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">IMPORTANTE: Se você não destruir o seu VeraCrypt Rescue Disk, sua partição de sistema / unidade ainda pode ser descriptografado usando a senha antiga (por arrancar o VeraCrypt Rescue Disk e inserir a senha antiga). Você deve criar um novo VeraCrypt Rescue Disk e, em seguida, destruir o velho um .\n\nVocê deseja criar um novo VeraCrypt Rescue Disk?</entry>
     <entry lang="pt-br" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Lembre que o Disco de Emergência VeraCrypt ainda usa o algoritmo anterior. Se você considera o algoritmo anterior inseguro, você deve criar um novo Disco de Emergência VeraCrypt e destruir o antigo.\n\nVocê deseja criar um novo disco de emergência VeraCrypt?</entry>
-    <entry lang="en" key="KEYFILES_NOTE">Any kind of file (for example, .mp3, .jpg, .zip, .avi) may be used as a VeraCrypt keyfile. Note that VeraCrypt never modifies the keyfile contents. You can select more than one keyfile (the order does not matter). If you add a folder, all non-hidden files found in it will be used as keyfiles. Click 'Add Token Files' to select keyfiles stored on security tokens or smart cards (or to import keyfiles to security tokens or smart cards).</entry>
+    <entry lang="en" key="KEYFILES_NOTE">Note that VeraCrypt never modifies the keyfile contents. You can select more than one keyfile (the order does not matter). If you add a folder, all non-hidden files found in it will be used as keyfiles. Click 'Add Token Files' to select keyfiles stored on security tokens or smart cards (or to import keyfiles to security tokens or smart cards).</entry>
     <entry lang="pt-br" key="KEYFILE_CHANGED">Arquivo(s)-chave adicionado(s)/removido(s) com sucesso.</entry>
     <entry lang="pt-br" key="KEYFILE_EXPORTED">Arquivo-chave exportado.</entry>
     <entry lang="pt-br" key="PKCS5_PRF_CHANGED">Algoritmo de derivação da chave ajustado com sucesso.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="pt-br" key="LINUX_LANGUAGE">Idioma</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">

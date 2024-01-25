@@ -102,7 +102,7 @@ endif
 
 #------ FUSE configuration ------
 
-FUSE_LIBS = $(shell pkg-config fuse --libs)
+FUSE_LIBS = $(shell $(PKG_CONFIG) fuse --libs)
 
 #------ Executable ------
 
@@ -159,7 +159,7 @@ endif
 
 $(APPNAME): $(LIBS) $(OBJS)
 	@echo Linking $@
-	$(CXX) -o $(APPNAME) $(OBJS) $(LIBS) $(FUSE_LIBS) $(WX_LIBS) $(LFLAGS)
+	$(CXX) -o $(APPNAME) $(OBJS) $(LIBS) $(AYATANA_LIBS) $(FUSE_LIBS) $(WX_LIBS) $(LFLAGS)
 
 ifeq "$(TC_BUILD_CONFIG)" "Release"
 ifndef NOSTRIP
@@ -310,6 +310,8 @@ prepare: $(APPNAME)
 	chmod +x $(BASE_DIR)/Setup/FreeBSD/usr/bin/$(APPNAME)-uninstall.sh
 	cp $(BASE_DIR)/License.txt $(BASE_DIR)/Setup/FreeBSD/usr/share/doc/$(APPNAME)/License.txt
 	cp -R $(BASE_DIR)/../doc/html/* "$(BASE_DIR)/Setup/FreeBSD/usr/share/doc/$(APPNAME)/HTML"
+	mkdir -p $(BASE_DIR)/Setup/FreeBSD/usr/share/veracrypt/languages
+	cp -r $(BASE_DIR)/../Translations/* $(BASE_DIR)/Setup/FreeBSD/usr/share/veracrypt/languages/
 
 ifndef TC_NO_GUI
 	mkdir -p $(BASE_DIR)/Setup/FreeBSD/usr/share/applications

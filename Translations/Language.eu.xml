@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.4">
+  <localization prog-version= "1.26.10">
     <language langid="eu" name="Euskara" en-name="Basque" version="1.0.0" translators="Ander Genua" />
     <font lang="eu" class="normal" size="11" face="default" />
     <font lang="eu" class="bold" size="13" face="Arial" />
@@ -613,7 +613,7 @@
     <entry lang="en" key="FAVORITE_PIM_CHANGED">This volume is registered as a System Favorite and its PIM was changed.\nDo you want VeraCrypt to automatically update the System Favorite configuration (administrator privileges required)?\n\nPlease note that if you answer no, you'll have to update the System Favorite manually.</entry>
     <entry lang="eu" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">GARRANTZITSUA: VeraCrypt-en Salbatze Diska txikitu ez baduzu, zure sistemaren partizio/unitatea oraindik pasahitz zaharrarekin argitu daiteke (VeraCrypt-en Sablatze Diskarekin sistema abiatuz eta pasahitz zaharra sartuz). VeraCrypt Salbatze Diska berri bat sortu eta zaharra txikitu beharko zenuke.\n\nVeraCrypt Salbatze Diska berri bat sortu nahi al duzu?</entry>
     <entry lang="eu" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">Ohartu zaitez VeraCrypt-en Salbatze Diskak oraindik algoritmo zaharra erabiltze duela. Algoritmo zaharra segurua ez dela iruditzen bazaizu, VeraCrypt Salbatze Diska berri bat sortu eta gero zaharra txikitu beharko zenuke.\n\nVeraCrypt Salbatze Diska berri bat sortu nahi al duzu?</entry>
-    <entry lang="eu" key="KEYFILES_NOTE">Edozein fitxategi mota erabili daiteke (adibidez, .mp3, .jpg, .zip, .avi) VeraCrypt gako-fitxategi bezala. Kontutan hartu ezazu VeraCrypt-ek ez duela fitxategiaren edukia aldatzen. Karpeta bat aukeratzen baduzu, bertan dauden ezkutu gabeko fitxategi guztiak erabiliko dira gako-fitxategi moduan. 'Agiri Fitxategiak Gehitu' sakatu ezazu segurtasun agiri edo txartel azkarren barruan gordeta dauden gako-fitxategiak aukeratzeko (edo gako-fitxategiak sekurtasun agiri edo txartel azkarretara eramteko).</entry>
+    <entry lang="eu" key="KEYFILES_NOTE">Kontutan hartu ezazu VeraCrypt-ek ez duela fitxategiaren edukia aldatzen. Karpeta bat aukeratzen baduzu, bertan dauden ezkutu gabeko fitxategi guztiak erabiliko dira gako-fitxategi moduan. 'Agiri Fitxategiak Gehitu' sakatu ezazu segurtasun agiri edo txartel azkarren barruan gordeta dauden gako-fitxategiak aukeratzeko (edo gako-fitxategiak sekurtasun agiri edo txartel azkarretara eramteko).</entry>
     <entry lang="eu" key="KEYFILE_CHANGED">Gako-fitxategia(K) gehitu/kendu da(dira).</entry>
     <entry lang="eu" key="KEYFILE_EXPORTED">Gako-fitxategia exportatu egin da.</entry>
     <entry lang="eu" key="PKCS5_PRF_CHANGED">Goiburua lortzeko algoritmoa zuzenki ezarri da.</entry>
@@ -1631,6 +1631,13 @@
     <entry lang="en" key="EXPANDER_MOUNTING_VOLUME">Mounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_UNMOUNTING_VOLUME">Unmounting volume ...\n</entry>
     <entry lang="en" key="EXPANDER_EXTENDING_FILESYSTEM">Extending file system ...\n</entry>
+    <entry lang="en" key="PARTIAL_SYSENC_MOUNT_READONLY">Warning: The system partition you attempted to mount was not fully encrypted. As a safety measure to prevent potential corruption or unwanted modifications, volume '%s' was mounted as read-only.</entry>
+    <entry lang="en" key="IDC_LINK_KEYFILES_EXTENSIONS_WARNING">Important information on using third-party file extensions</entry>
+    <entry lang="en" key="IDC_DISABLE_MEMORY_PROTECTION">Disable memory protection for Accessibility tools compatibility</entry>
+    <entry lang="en" key="DISABLE_MEMORY_PROTECTION_WARNING">WARNING: Disabling memory protection significantly reduces security. Enable this option ONLY if you rely on Accessibility tools, like Screen Readers, to interact with VeraCrypt's UI.</entry>
+    <entry lang="eu" key="LINUX_LANGUAGE">Hizkuntza</entry>
+    <entry lang="en" key="LINUX_SELECT_SYS_DEFAULT_LANG">Select system's default language</entry>
+    <entry lang="en" key="LINUX_RESTART_FOR_LANGUAGE_CHANGE">For the language change to come into effect, VeraCrypt needs to be restarted.</entry>
   </localization>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="VeraCrypt">
