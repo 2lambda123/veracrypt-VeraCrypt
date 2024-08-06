@@ -22,8 +22,8 @@
     <entry lang="zh-hk" key="IDD_UNINSTALL">解除安裝 VeraCrypt</entry>
     <entry lang="zh-hk" key="IDHELP">説明(&amp;H)</entry>
     <entry lang="zh-hk" key="IDT_EXTRACT_DESTINATION">請選擇或者輸入您希望解壓縮檔案的位置：</entry>
-    <entry lang="zh-hk" key="IDT_INSTALL_DESTINATION">請選擇或者輸入您希望 VeraCrypt 安裝的位置。如果指定的資料夾不存在，將會被自動建立。</entry>
-    <entry lang="zh-hk" key="IDT_UNINSTALL_DIR">按[解除安裝]以從系統中解除安裝 VeraCrypt。</entry>
+    <entry lang="zh-hk" key="IDT_INSTALL_DESTINATION">請選擇或者輸入您希望安裝 VeraCrypt 的位置。如果指定的資料夾不存在，將會被自動建立。</entry>
+    <entry lang="zh-hk" key="IDT_UNINSTALL_DIR">按 [解除安裝] 以從系統中解除安裝 VeraCrypt。</entry>
     <entry lang="zh-hk" key="IDC_ABORT_BUTTON">停止</entry>
     <entry lang="zh-hk" key="IDC_BENCHMARK">效能測試(&amp;B)</entry>
     <entry lang="zh-hk" key="IDC_CIPHER_TEST">測試(&amp;T)</entry>
@@ -31,12 +31,12 @@
     <entry lang="zh-hk" key="IDC_DEVICE_TRANSFORM_MODE_INPLACE">就地加密分割區</entry>
     <entry lang="zh-hk" key="IDC_DISPLAY_KEYS">顯示產生的加密鑰(其部分內容)</entry>
     <entry lang="zh-hk" key="IDC_DISPLAY_POOL_CONTENTS">顯示暫存集區內容</entry>
-    <entry lang="zh-hk" key="IDC_DOWNLOAD_CD_BURN_SOFTWARE">下載 CD/DVD 燒錄軟件</entry>
+    <entry lang="zh-hk" key="IDC_DOWNLOAD_CD_BURN_SOFTWARE">下載 CD 或 DVD 燒錄軟件</entry>
     <entry lang="zh-hk" key="IDC_FILE_CONTAINER">建立一個加密容器檔案</entry>
     <entry lang="zh-hk" key="IDC_GB">&amp;GiB</entry>
     <entry lang="zh-hk" key="IDC_TB">&amp;TiB</entry>
     <entry lang="zh-hk" key="IDC_HIDDEN_SYSENC_INFO_LINK">更多資訊</entry>
-    <entry lang="zh-hk" key="IDC_HIDDEN_VOL">隱藏的 VeraCrypt 加密區(&amp;D) </entry>
+    <entry lang="zh-hk" key="IDC_HIDDEN_VOL">VeraCrypt 隱藏加密區(&amp;D)</entry>
     <entry lang="zh-hk" key="IDC_HIDDEN_VOL_HELP">更多關於隱藏加密區的資訊</entry>
     <entry lang="zh-hk" key="IDC_HIDVOL_WIZ_MODE_DIRECT">直接模式</entry>
     <entry lang="zh-hk" key="IDC_HIDVOL_WIZ_MODE_FULL">正常模式</entry>
@@ -57,7 +57,7 @@
     <entry lang="zh-hk" key="IDC_NO_HISTORY">永不儲存歷史記錄(&amp;S)</entry>
     <entry lang="zh-hk" key="IDC_OPEN_OUTER_VOLUME">開啟外層加密區</entry>
     <entry lang="zh-hk" key="IDC_PAUSE">暫停(&amp;P)</entry>
-    <entry lang="zh-hk" key="IDC_PIM_ENABLE">使用 P&amp;IM</entry>
+    <entry lang="zh-hk" key="IDC_PIM_ENABLE">使用 PIM(&amp;I)</entry>
     <entry lang="zh-hk" key="IDC_NEW_PIM_ENABLE">使用 PIM</entry>
     <entry lang="zh-hk" key="IDC_QUICKFORMAT">快速格式化</entry>
     <entry lang="zh-hk" key="IDC_SHOW_PASSWORD">顯示密碼(&amp;D)</entry>
@@ -67,11 +67,11 @@
     <entry lang="zh-hk" key="IDC_STD_VOL">標準 VeraCrypt 加密區</entry>
     <entry lang="zh-hk" key="IDC_SYSENC_HIDDEN">隱藏(&amp;D)</entry>
     <entry lang="zh-hk" key="IDC_SYSENC_NORMAL">正常</entry>
-    <entry lang="zh-hk" key="IDC_SYS_DEVICE">加密系統分割區或整個系統所在的碟機</entry>
+    <entry lang="zh-hk" key="IDC_SYS_DEVICE">加密系統分割區或整個系統磁碟機</entry>
     <entry lang="zh-hk" key="IDC_SYS_PARTITION">加密 Windows 作業系統分割區</entry>
-    <entry lang="zh-hk" key="IDC_WHOLE_SYS_DRIVE">加密整個碟機</entry>
+    <entry lang="zh-hk" key="IDC_WHOLE_SYS_DRIVE">加密整個磁碟機</entry>
     <entry lang="zh-hk" key="IDD_VOL_CREATION_WIZARD_DLG">VeraCrypt 加密區建立精靈</entry>
-    <entry lang="zh-hk" key="IDT_CLUSTER">配置單位</entry>
+    <entry lang="zh-hk" key="IDT_CLUSTER">配置單位 </entry>
     <entry lang="zh-hk" key="IDT_COLLECTING_RANDOM_DATA_NOTE">重要：請在這個視窗範圍內儘量隨意移動滑鼠。移動的時間越長越好。這將會有效增強加密鑰的加密強度。然後按[下一步]繼續。</entry>
     <entry lang="zh-hk" key="IDT_CONFIRM">確認(&amp;C)：</entry>
     <entry lang="zh-hk" key="IDT_DONE">已完成</entry>
@@ -85,7 +85,7 @@
     <entry lang="zh-hk" key="IDT_LEFT">剩餘</entry>
     <entry lang="zh-hk" key="IDT_MASTER_KEY">主要加密鑰：</entry>
     <entry lang="zh-hk" key="IDT_MULTI_BOOT">如果在這部電腦上安裝了兩個或以上的作業系統請選擇此項。\n\n例如：\n- Windows XP 和 Windows XP\n- Windows XP 和 Windows Vista\n- Windows 和 Mac OS X\n- Windows 和 Linux\n- Windows，Linux 和 Mac OS X</entry>
-    <entry lang="zh-hk" key="IDT_NON_SYS_DEVICE">加密一個內置或者外置磁碟機上的非系統分割區(如隨身碟)。也可以選擇性地建立一個隱藏的加密區。</entry>
+    <entry lang="zh-hk" key="IDT_NON_SYS_DEVICE">加密一個內置或者外置磁碟機上的非系統分割區(如隨身碟)。選擇性地，建立一個隱藏的加密區。</entry>
     <entry lang="zh-hk" key="IDT_PARTIAL_POOL_CONTENTS">目前暫存集區內容(局部)</entry>
     <entry lang="zh-hk" key="IDT_PASS">密碼</entry>
     <entry lang="zh-hk" key="IDT_PASSWORD">密碼：</entry>
@@ -124,16 +124,16 @@
     <entry lang="zh-hk" key="IDC_ENABLE_NEW_KEYFILES">使用加密鑰檔案</entry>
     <entry lang="zh-hk" key="IDC_EXIT">離開(&amp;X)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITES_HELP_LINK">最愛加密區的說明</entry>
-    <entry lang="zh-hk" key="IDC_FAVORITE_DISABLE_HOTKEY">按下[掛載最愛加密區]的快捷鍵時不要掛載這個加密區(&amp;H)</entry>
+    <entry lang="zh-hk" key="IDC_FAVORITE_DISABLE_HOTKEY">按下 [掛載最愛加密區] 的快捷鍵時不要掛載這個加密區(&amp;H)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITE_MOUNT_ON_ARRIVAL">當連接儲存裝置時掛載這個加密區(&amp;C)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITE_MOUNT_ON_LOGON">登入時掛載這個加密區(&amp;O)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITE_MOUNT_READONLY">以唯讀方式掛載這個加密區(&amp;N)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITE_MOUNT_REMOVABLE">以可移除磁碟形式掛載這個加密區(&amp;V)</entry>
-    <entry lang="zh-hk" key="IDC_FAVORITE_MOVE_DOWN">下移(&amp;D)</entry>
-    <entry lang="zh-hk" key="IDC_FAVORITE_MOVE_UP">上移(&amp;U)</entry>
-    <entry lang="zh-hk" key="IDC_FAVORITE_OPEN_EXPLORER_WIN_ON_MOUNT">當成功掛載加密區之後開啟檔案瀏覽器(&amp;E)</entry>
+    <entry lang="zh-hk" key="IDC_FAVORITE_MOVE_DOWN">向下移動(&amp;D)</entry>
+    <entry lang="zh-hk" key="IDC_FAVORITE_MOVE_UP">向上移動(&amp;U)</entry>
+    <entry lang="zh-hk" key="IDC_FAVORITE_OPEN_EXPLORER_WIN_ON_MOUNT">當成功掛載加密區之後以檔案瀏覽器開啟(&amp;E)</entry>
     <entry lang="zh-hk" key="IDC_FAVORITE_REMOVE">移除(&amp;R)</entry>
-    <entry lang="zh-hk" key="IDC_FAVORITE_USE_LABEL_IN_EXPLORER">使用自訂的標籤作為檔案瀏覽器的磁碟標籤</entry>
+    <entry lang="zh-hk" key="IDC_FAVORITE_USE_LABEL_IN_EXPLORER">使用我的最愛標籤作為檔案瀏覽器的磁碟標籤</entry>
     <entry lang="zh-hk" key="IDC_FAV_VOL_OPTIONS_GLOBAL_SETTINGS_BOX">全局設定</entry>
     <entry lang="zh-hk" key="IDC_HK_DISMOUNT_BALLOON_TOOLTIP">使用快捷鍵成功卸載之後顯示氣泡提示框</entry>
     <entry lang="zh-hk" key="IDC_HK_DISMOUNT_PLAY_SOUND">使用快捷鍵成功卸載之後播放系統提示音效</entry>
@@ -144,7 +144,7 @@
     <entry lang="zh-hk" key="IDC_HOTKEY_ASSIGN">指定</entry>
     <entry lang="zh-hk" key="IDC_HOTKEY_REMOVE">移除</entry>
     <entry lang="zh-hk" key="IDC_KEYFILES">加密鑰檔案...</entry>
-    <entry lang="zh-hk" key="IDC_LIMIT_ENC_THREAD_POOL">不要使用以下數目的處理器核心進行加密/解密：</entry>
+    <entry lang="zh-hk" key="IDC_LIMIT_ENC_THREAD_POOL">不要使用以下數目的處理器核心進行加密或解密：</entry>
     <entry lang="zh-hk" key="IDC_MORE_INFO_ON_HW_ACCELERATION">更多資訊</entry>
     <entry lang="zh-hk" key="IDC_MORE_INFO_ON_THREAD_BASED_PARALLELIZATION">更多資訊</entry>
     <entry lang="zh-hk" key="IDC_MORE_SETTINGS">更多設定...</entry>
@@ -167,7 +167,7 @@
     <entry lang="zh-hk" key="IDC_PREF_MOUNT_READONLY">將加密區掛載成唯讀</entry>
     <entry lang="zh-hk" key="IDC_PREF_MOUNT_REMOVABLE">將加密區掛載成可移除媒體</entry>
     <entry lang="zh-hk" key="IDC_PREF_OPEN_EXPLORER">在成功掛載加密區之後開啟檔案瀏覽器</entry>
-    <entry lang="zh-hk" key="IDC_PREF_TEMP_CACHE_ON_MULTIPLE_MOUNT">在[掛載最愛磁碟區]時暫時儲存密碼</entry>
+    <entry lang="zh-hk" key="IDC_PREF_TEMP_CACHE_ON_MULTIPLE_MOUNT">在[掛載最愛的加密區]時暫時儲存密碼</entry>
     <entry lang="zh-hk" key="IDC_PREF_USE_DIFF_TRAY_ICON_IF_VOL_MOUNTED">當有已掛載的加密區時使用不同的工作列圖示</entry>
     <entry lang="zh-hk" key="IDC_PREF_WIPE_CACHE_ON_AUTODISMOUNT">自動卸載時清除暫存的密碼</entry>
     <entry lang="zh-hk" key="IDC_PREF_WIPE_CACHE_ON_EXIT">結束程式時清除已暫存的密碼</entry>
@@ -186,7 +186,7 @@
     <entry lang="zh-hk" key="IDC_VOLUME_TOOLS">加密區工具(&amp;T)...</entry>
     <entry lang="zh-hk" key="IDC_WIPE_CACHE">清除密碼暫存(&amp;W)</entry>
     <entry lang="zh-hk" key="IDD_DEFAULT_MOUNT_PARAMETERS">VeraCrypt - 掛載參數</entry>
-    <entry lang="zh-hk" key="IDD_FAVORITE_VOLUMES">VeraCrypt - 最愛加密區</entry>
+    <entry lang="zh-hk" key="IDD_FAVORITE_VOLUMES">VeraCrypt - 最愛的加密區</entry>
     <entry lang="zh-hk" key="IDD_HOTKEYS_DLG">VeraCrypt - 全系統性快捷鍵</entry>
     <entry lang="zh-hk" key="IDD_MOUNT_DLG">VeraCrypt</entry>
     <entry lang="zh-hk" key="IDD_PASSWORDCHANGE_DLG">更改密碼或加密鑰檔案</entry>
@@ -194,22 +194,22 @@
     <entry lang="zh-hk" key="IDD_PERFORMANCE_SETTINGS">VeraCrypt - 效能及驅動程式選項</entry>
     <entry lang="zh-hk" key="IDD_PREFERENCES_DLG">VeraCrypt - 喜好設定</entry>
     <entry lang="zh-hk" key="IDD_SYSENC_SETTINGS">VeraCrypt - 系統加密設定選項</entry>
-    <entry lang="zh-hk" key="IDD_TOKEN_PREFERENCES">VeraCrypt - 安全權杖喜好設定</entry>
+    <entry lang="zh-hk" key="IDD_TOKEN_PREFERENCES">VeraCrypt - 安全權性杖喜好設定</entry>
     <entry lang="zh-hk" key="IDD_TRAVELER_DLG">VeraCrypt 隨身碟安裝</entry>
     <entry lang="zh-hk" key="IDD_VOLUME_PROPERTIES">VeraCrypt 加密區內容</entry>
     <entry lang="zh-hk" key="IDM_ABOUT">關於</entry>
-    <entry lang="zh-hk" key="IDM_ADD_REMOVE_VOL_KEYFILES">新增/移除加密鑰檔案...</entry>
+    <entry lang="zh-hk" key="IDM_ADD_REMOVE_VOL_KEYFILES">新增或移除加密鑰檔案...</entry>
     <entry lang="zh-hk" key="IDM_ADD_VOLUME_TO_FAVORITES">新增已掛載的加密區到最愛...</entry>
-    <entry lang="zh-hk" key="IDM_ADD_VOLUME_TO_SYSTEM_FAVORITES">新增已掛載的加密區到系統最愛...</entry>
-    <entry lang="zh-hk" key="IDM_ANALYZE_SYSTEM_CRASH">分析系統崩潰原因...</entry>
+    <entry lang="zh-hk" key="IDM_ADD_VOLUME_TO_SYSTEM_FAVORITES">新增已掛載的加密區到系統最愛的系統加密區...</entry>
+    <entry lang="zh-hk" key="IDM_ANALYZE_SYSTEM_CRASH">分析一個系統崩潰的原因...</entry>
     <entry lang="zh-hk" key="IDM_BACKUP_VOL_HEADER">備份加密區的標頭數據...</entry>
     <entry lang="zh-hk" key="IDM_BENCHMARK">效能測試...</entry>
     <entry lang="zh-hk" key="IDM_CHANGE_HEADER_KEY_DERIV_ALGO">設定標頭數據加密鑰衍生演算法...</entry>
     <entry lang="zh-hk" key="IDM_CHANGE_PASSWORD">更改加密區密碼...</entry>
-    <entry lang="zh-hk" key="IDM_CHANGE_SYS_HEADER_KEY_DERIV_ALGO">設定表頭加密鑰衍生演算法...</entry>
+    <entry lang="zh-hk" key="IDM_CHANGE_SYS_HEADER_KEY_DERIV_ALGO">設定標頭加密鑰衍生演算法...</entry>
     <entry lang="zh-hk" key="IDM_CHANGE_SYS_PASSWORD">更改密碼...</entry>
     <entry lang="zh-hk" key="IDM_CLEAR_HISTORY">清除加密區歷史記錄</entry>
-    <entry lang="zh-hk" key="IDM_CLOSE_ALL_TOKEN_SESSIONS">關閉所有安全權杖的工作階段</entry>
+    <entry lang="zh-hk" key="IDM_CLOSE_ALL_TOKEN_SESSIONS">關閉所有安全性權杖的工作階段</entry>
     <entry lang="zh-hk" key="IDM_CONTACT">聯絡作者</entry>
     <entry lang="zh-hk" key="IDM_CREATE_HIDDEN_OS">建立隱藏作業系統...</entry>
     <entry lang="zh-hk" key="IDM_CREATE_RESCUE_DISK">建立救機光碟...</entry>
@@ -226,18 +226,18 @@
     <entry lang="zh-hk" key="IDM_KEYFILE_GENERATOR">加密鑰檔案產生器</entry>
     <entry lang="zh-hk" key="IDM_LANGUAGE">語言...</entry>
     <entry lang="zh-hk" key="IDM_LICENSE">法律聲明</entry>
-    <entry lang="zh-hk" key="IDM_MANAGE_TOKEN_KEYFILES">管理安全權杖的加密鑰檔案...</entry>
+    <entry lang="zh-hk" key="IDM_MANAGE_TOKEN_KEYFILES">管理安全性權杖的加密鑰檔案...</entry>
     <entry lang="zh-hk" key="IDM_MOUNTALL">自動掛載全部儲存裝置類型的加密區</entry>
-    <entry lang="zh-hk" key="IDM_MOUNT_FAVORITE_VOLUMES">掛載最愛加密區</entry>
+    <entry lang="zh-hk" key="IDM_MOUNT_FAVORITE_VOLUMES">掛載最愛的加密區</entry>
     <entry lang="zh-hk" key="IDM_MOUNT_SYSENC_PART_WITHOUT_PBA">以非開機驗證方式掛載(&amp;A)...</entry>
     <entry lang="zh-hk" key="IDM_MOUNT_VOLUME">掛載加密區</entry>
     <entry lang="zh-hk" key="IDM_MOUNT_VOLUME_OPTIONS">以選項掛載加密區</entry>
     <entry lang="zh-hk" key="IDM_NEWS">新聞</entry>
     <entry lang="zh-hk" key="IDM_ONLINE_HELP">線上幫助</entry>
     <entry lang="zh-hk" key="IDM_ONLINE_TUTORIAL">新手教學</entry>
-    <entry lang="zh-hk" key="IDM_ORGANIZE_FAVORITES">管理最愛加密區...</entry>
-    <entry lang="zh-hk" key="IDM_ORGANIZE_SYSTEM_FAVORITES">管理系統最愛加密區...</entry>
-    <entry lang="zh-hk" key="IDM_PERFORMANCE_SETTINGS">效能/驅動程式設定</entry>
+    <entry lang="zh-hk" key="IDM_ORGANIZE_FAVORITES">管理最愛的加密區...</entry>
+    <entry lang="zh-hk" key="IDM_ORGANIZE_SYSTEM_FAVORITES">管理最愛的系統加密區...</entry>
+    <entry lang="zh-hk" key="IDM_PERFORMANCE_SETTINGS">效能或驅動程式設定</entry>
     <entry lang="zh-hk" key="IDM_PERMANENTLY_DECRYPT_SYS">永久解密系統分割區或磁碟機</entry>
     <entry lang="zh-hk" key="IDM_PREFERENCES">喜好設定...</entry>
     <entry lang="zh-hk" key="IDM_REFRESH_DRIVE_LETTERS">更新磁碟機代號列表</entry>
@@ -250,14 +250,14 @@
     <entry lang="zh-hk" key="IDM_SYSENC_SETTINGS">系統加密...</entry>
     <entry lang="zh-hk" key="IDM_SYSTEM_ENCRYPTION_STATUS">內容...</entry>
     <entry lang="zh-hk" key="IDM_SYS_ENC_SETTINGS">設定...</entry>
-    <entry lang="zh-hk" key="IDM_SYS_FAVORITES_SETTINGS">系統最愛加密區...</entry>
+    <entry lang="zh-hk" key="IDM_SYS_FAVORITES_SETTINGS">最愛的系統加密區...</entry>
     <entry lang="zh-hk" key="IDM_TC_DOWNLOADS">下載</entry>
     <entry lang="zh-hk" key="IDM_TEST_VECTORS">測試向量...</entry>
-    <entry lang="zh-hk" key="IDM_TOKEN_PREFERENCES">安全權杖...</entry>
+    <entry lang="zh-hk" key="IDM_TOKEN_PREFERENCES">安全性權杖...</entry>
     <entry lang="zh-hk" key="IDM_TRAVELER">隨身碟安裝...</entry>
-    <entry lang="zh-hk" key="IDM_UNMOUNTALL">卸載全部掛載的加密區</entry>
+    <entry lang="zh-hk" key="IDM_UNMOUNTALL">卸載全部已掛載的加密區</entry>
     <entry lang="zh-hk" key="IDM_UNMOUNT_VOLUME">卸載加密區</entry>
-    <entry lang="zh-hk" key="IDM_VERIFY_RESCUE_DISK">救機光碟</entry>
+    <entry lang="zh-hk" key="IDM_VERIFY_RESCUE_DISK">驗證救機光碟</entry>
     <entry lang="zh-hk" key="IDM_VERIFY_RESCUE_DISK_ISO">驗證救機光碟映像檔</entry>
     <entry lang="zh-hk" key="IDM_VERSION_HISTORY">版本歷史</entry>
     <entry lang="zh-hk" key="IDM_VOLUME_EXPANDER">磁碟區擴展工具</entry>
@@ -274,7 +274,7 @@
     <entry lang="zh-hk" key="IDT_BOOT_LOADER_SCREEN_OPTIONS">開機管理程式畫面設定</entry>
     <entry lang="zh-hk" key="IDT_CONFIRM_PASSWORD">確認密碼：</entry>
     <entry lang="zh-hk" key="IDT_CURRENT">目前的密碼</entry>
-    <entry lang="zh-hk" key="IDT_CUSTOM_BOOT_LOADER_MESSAGE">在開機驗證畫面顯示以下自設訊息(最長 24 個字元)：</entry>
+    <entry lang="zh-hk" key="IDT_CUSTOM_BOOT_LOADER_MESSAGE">在開機驗證畫面顯示以下自訂訊息(最長 24 個字元)：</entry>
     <entry lang="zh-hk" key="IDT_DEFAULT_MOUNT_OPTIONS">預設掛載設定</entry>
     <entry lang="zh-hk" key="IDT_DISMOUNT_ACTION">快捷鍵選項</entry>
     <entry lang="zh-hk" key="IDT_DRIVER_OPTIONS">磁碟機設定</entry>
@@ -285,7 +285,7 @@
     <entry lang="zh-hk" key="IDT_HW_AES_SUPPORTED_BY_CPU">這部電腦的中央處理器 (CPU) 支援 AES 硬件加速：</entry>
     <entry lang="zh-hk" key="IDT_LOGON">Windows 登入時執行的操作</entry>
     <entry lang="zh-hk" key="IDT_MINUTES">分鐘</entry>
-    <entry lang="zh-hk" key="IDT_MOUNT_LETTER">以該磁碟機磁碟機代號掛載：</entry>
+    <entry lang="zh-hk" key="IDT_MOUNT_LETTER">以磁碟機代號掛載加密區：</entry>
     <entry lang="zh-hk" key="IDT_MOUNT_SETTINGS">掛載設定</entry>
     <entry lang="zh-hk" key="IDT_NEW">新密碼</entry>
     <entry lang="zh-hk" key="IDT_NEW_PASSWORD">密碼：</entry>
@@ -313,7 +313,7 @@
     <entry lang="zh-hk" key="IDC_GENERATE_KEYFILE">產生隨機加密鑰檔案(&amp;G)...</entry>
     <entry lang="zh-hk" key="IDC_GET_LANG_PACKS">下載語言包</entry>
     <entry lang="zh-hk" key="IDC_HW_AES_LABEL_LINK">硬件加速 AES:</entry>
-    <entry lang="zh-hk" key="IDC_IMPORT_KEYFILE">匯入加密鑰檔案到安全權杖(&amp;I)...</entry>
+    <entry lang="zh-hk" key="IDC_IMPORT_KEYFILE">匯入加密鑰檔案到安全性權杖(&amp;I)...</entry>
     <entry lang="zh-hk" key="IDC_KEYADD">新增文件(&amp;F)...</entry>
     <entry lang="zh-hk" key="IDC_KEYFILES_ENABLE_HIDVOL_PROT">使用加密鑰檔案(&amp;A)</entry>
     <entry lang="zh-hk" key="IDC_KEYFILES_HIDVOL_PROT">加密鑰檔案(&amp;K)...</entry>
@@ -329,7 +329,7 @@
     <entry lang="zh-hk" key="IDC_PROTECT_HIDDEN_VOL">於外層加密區寫入資料時保護隱藏加密區(&amp;P)</entry>
     <entry lang="zh-hk" key="IDC_RESET">重設(&amp;R)</entry>
     <entry lang="zh-hk" key="IDC_SHOW_PASSWORD_MO">顯示密碼(&amp;A)</entry>
-    <entry lang="zh-hk" key="IDC_TOKEN_FILES_ADD">新增安全權杖(&amp;T)...</entry>
+    <entry lang="zh-hk" key="IDC_TOKEN_FILES_ADD">新增安全性權杖(&amp;T)...</entry>
     <entry lang="zh-hk" key="IDC_USE_EMBEDDED_HEADER_BAK">如果有的話則使用內嵌在加密區中的備份標頭數據(&amp;V)</entry>
     <entry lang="zh-hk" key="IDC_XTS_MODE_ENABLED">XTS 模式</entry>
     <entry lang="zh-hk" key="IDD_ABOUT_DLG">關於 VeraCrypt</entry>
@@ -340,12 +340,12 @@
     <entry lang="zh-hk" key="IDD_KEYFILE_GENERATOR">VeraCrypt - 加密鑰檔案產生器</entry>
     <entry lang="zh-hk" key="IDD_LANGUAGE">VeraCrypt - 語言</entry>
     <entry lang="zh-hk" key="IDD_MOUNT_OPTIONS">VeraCrypt - 掛載選項</entry>
-    <entry lang="zh-hk" key="IDD_NEW_TOKEN_KEYFILE">新的安全權杖加密鑰檔案內容</entry>
+    <entry lang="zh-hk" key="IDD_NEW_TOKEN_KEYFILE">新的安全性權杖加密鑰檔案內容</entry>
     <entry lang="zh-hk" key="IDD_RANDOM_POOL_ENRICHMENT">VeraCrypt - 增強隨機數據集區</entry>
     <entry lang="zh-hk" key="IDD_RAWDEVICES_DLG">選擇一個分割區或裝置</entry>
     <entry lang="zh-hk" key="IDD_STATIC_MODELESS_WAIT_DLG">VeraCrypt</entry>
-    <entry lang="zh-hk" key="IDD_TOKEN_KEYFILES">安全權杖加密鑰檔案</entry>
-    <entry lang="zh-hk" key="IDD_TOKEN_PASSWORD">必需安全權杖密碼/PIN</entry>
+    <entry lang="zh-hk" key="IDD_TOKEN_KEYFILES">安全性權杖加密鑰檔案</entry>
+    <entry lang="zh-hk" key="IDD_TOKEN_PASSWORD">必需安全性權杖密碼/PIN</entry>
     <entry lang="zh-hk" key="IDT_ACTIVE_LANG_PACK">目前的語言包</entry>
     <entry lang="zh-hk" key="IDT_BOX_BENCHMARK_INFO">速度會受 CPU 負載及儲存裝置的性能影響。\n\n這些測試在記憶體中進行。</entry>
     <entry lang="zh-hk" key="IDT_BUFFER_SIZE">快取大小：</entry>
@@ -366,7 +366,7 @@
     <entry lang="zh-hk" key="IDT_PRF">混合 PRF：</entry>
     <entry lang="zh-hk" key="IDT_RANDOM_POOL_ENRICHMENT_NOTE">重要：在這個視窗內盡量隨意地移動滑鼠，移動的時間越長效果越好。這將會顯著增強安全性。當操作完成時按[繼續] 按鈕。</entry>
     <entry lang="zh-hk" key="IDT_SECONDARY_KEY">次要加密鑰(十六進位)</entry>
-    <entry lang="zh-hk" key="IDT_SECURITY_TOKEN">安全權杖：</entry>
+    <entry lang="zh-hk" key="IDT_SECURITY_TOKEN">安全性權杖：</entry>
     <entry lang="zh-hk" key="IDT_SORT_METHOD">排序方式：</entry>
     <entry lang="zh-hk" key="IDT_STATIC_MODELESS_WAIT_DLG_INFO">請耐心等候。這個過程可能需要較長時間...</entry>
     <entry lang="zh-hk" key="IDT_STATIC_MODAL_WAIT_DLG_INFO">請耐心等候...\n這個過程可能需要較長時間，同時 VeraCrypt 可能會出現沒有回應的情況。</entry>
@@ -613,7 +613,7 @@
     <entry lang="zh-hk" key="FAVORITE_PIM_CHANGED">此磁碟區已登記成為喜愛的系統磁碟區及其 PIM 已經變更。\n您是否需要 VeraCrypt 自動更新喜愛的系統磁碟區設定 (必須系統管理員權限)?\n\n請注意如您的回應為否，你將需要手動更新喜愛的系統磁碟區。</entry>
     <entry lang="zh-hk" key="SYS_PASSWORD_CHANGED_ASK_RESCUE_DISK">重要：如果您不銷毀 VeraCrypt 救機光碟，您的系統分割區或磁碟機仍然可以通過使用舊密碼解密(通過 VeraCrypt 救機光碟來開機和輸入舊密碼)。您應該建立一個新的 VeraCrypt 救機光碟，之後銷毀原先的救機光碟。\n\n您希望建立一個新的 VeraCrypt 救機光碟嗎？</entry>
     <entry lang="zh-hk" key="SYS_HKD_ALGO_CHANGED_ASK_RESCUE_DISK">請注意，VeraCrypt 救機光碟仍然使用著早期的加密演算法。如果您覺的先前的加密演算法不安全，您應該建立一個新的 VeraCrypt 救機光碟，之後銷毀原先的救機光碟。\n\n您希望建立一個新的 VeraCrypt 救機光碟嗎？</entry>
-    <entry lang="zh-hk" key="KEYFILES_NOTE">任何類型的檔案 (例如, .mp3, .jpg, .zip, .avi) 都可以用作 VeraCrypt 加密鑰檔案。注意 VeraCrypt 絕不會修改加密鑰檔案的內容。您可選擇多於一個加密鑰檔案(次序並不重要)。如果您新增一個資料夾，所有內含的非隱藏檔案都會用作加密鑰檔案。選擇[加入令牌檔案]以選取儲存在安全權杖或智能卡 (或者匯入加密鑰檔案到安全權杖或智能卡)。</entry>
+    <entry lang="zh-hk" key="KEYFILES_NOTE">任何類型的檔案 (例如, .mp3, .jpg, .zip, .avi) 都可以用作 VeraCrypt 加密鑰檔案。注意 VeraCrypt 絕不會修改加密鑰檔案的內容。您可選擇多於一個加密鑰檔案(次序並不重要)。如果您新增一個資料夾，所有內含的非隱藏檔案都會用作加密鑰檔案。選擇[加入令牌檔案]以選取儲存在安全性權杖或智能卡 (或者匯入加密鑰檔案到安全性權杖或智能卡)。</entry>
     <entry lang="zh-hk" key="KEYFILE_CHANGED">加密鑰檔案已成功新增/移除。</entry>
     <entry lang="zh-hk" key="KEYFILE_EXPORTED">已匯出加密鑰檔案。</entry>
     <entry lang="zh-hk" key="PKCS5_PRF_CHANGED">首密鑰衍生演算法已成功設定。</entry>
@@ -1264,24 +1264,24 @@
     <entry lang="zh-hk" key="DISCARD_UNREADABLE_ENCRYPTED_SECTORS">錯誤：磁片上一個或多個磁區的內容無法讀取(可能由於物理因素影響)。\n\n為了能夠繼續加密，VeraCrypt 不得不放棄這些不可讀磁區(磁區內容會被偽亂數據填充)。請注意，在繼續進行之前，您可以嘗試使用適當的第三方軟件還原任何損壞資料的一部分。\n\n您希望 VeraCrypt 廢棄不可讀磁區中的資料嗎？</entry>
     <entry lang="zh-hk" key="ZEROED_BAD_SECTOR_COUNT">注意：VeraCrypt 已經用已加密的全零純文字區塊來替換 %I64d 中無法讀取的磁區(%s)的內容。</entry>
     <entry lang="zh-hk" key="SKIPPED_BAD_SECTOR_COUNT">VeraCrypt 已經用偽隨機數據來替換 %I64d 中無法讀取的磁區(%s)的內容。</entry>
-    <entry lang="zh-hk" key="ENTER_TOKEN_PASSWORD">輸入安全權杖[%s]的密碼/PIN:</entry>
-    <entry lang="zh-hk" key="PKCS11_LIB_LOCATION_HELP">為了讓 VeraCrypt 可以存取安全權杖或智慧卡，您首先需要為安全權杖或智慧卡安裝一個 PKCS #11 程式庫，這些程式庫可能已經隨裝置提供，或者可以從供應商網站或其他第三方網站上下載。\n\n在您安裝了程式庫後，您可以通過單擊[選擇程式庫]手動選擇，或者通過單擊	[自動檢測程式庫]來讓 VeraCrypt 發現和選擇(僅會搜索 Windows 系統目錄，比較耗費時間)。</entry>
-    <entry lang="zh-hk" key="SELECT_PKCS11_MODULE_HELP">注意：對於安裝到您電腦上的 PKCS #11 程式庫以及安全權杖或智慧卡的檔案名和位置，請參考安全權杖、智慧卡的文檔，或者參考第三方軟件。\n\n單擊[確定] 按鈕選擇路徑和檔案名。</entry>
-    <entry lang="zh-hk" key="NO_PKCS11_MODULE_SPECIFIED">為了讓 VeraCrypt 可以存取安全權杖或智慧卡，您需要為安全權杖或智慧卡選擇一個 PKCS #11 程式庫。要做到這點，請選擇[設定] &gt; [安全權杖]。</entry>
-    <entry lang="zh-hk" key="PKCS11_MODULE_INIT_FAILED">初始化 PKCS #11 安全權杖程式庫失敗。\n\n請確認指定路徑和檔案名對應有效的 PKCS #11 程式庫。要指定 PKCS #11 程式庫路徑和檔案名，選擇 [設定] &gt; [安全權杖]。</entry>
-    <entry lang="zh-hk" key="PKCS11_MODULE_AUTO_DETECTION_FAILED">在 Windows 系統目錄未發現 PKCS #11 程式庫。\n\n請確認您的安全權杖或智慧卡已經安裝了 PKCS #11 程式庫(這些程式庫可能已經隨裝置提供，或者可以從供應商網站或其他第三方網站上下載)。如果是被安裝到 Windows 系統目錄之外的地方，請按[選擇程式庫]來定位程式庫位置(例如：安全權杖/智能卡 的安裝資料夾。</entry>
-    <entry lang="zh-hk" key="NO_TOKENS_FOUND">未發現安全權杖。\n\n請確認您的安全權杖已經連接到您的電腦上並且已經安裝好了正確的裝置驅動程式程式。</entry>
-    <entry lang="zh-hk" key="TOKEN_KEYFILE_NOT_FOUND">安全權杖加密鑰檔案未發現。</entry>
-    <entry lang="zh-hk" key="TOKEN_KEYFILE_ALREADY_EXISTS">已經存在同名的安全權杖加密鑰檔案。</entry>
+    <entry lang="zh-hk" key="ENTER_TOKEN_PASSWORD">輸入安全性權杖[%s]的密碼/PIN:</entry>
+    <entry lang="zh-hk" key="PKCS11_LIB_LOCATION_HELP">為了讓 VeraCrypt 可以存取安全性權杖或智慧卡，您首先需要為安全性權杖或智慧卡安裝一個 PKCS #11 程式庫，這些程式庫可能已經隨裝置提供，或者可以從供應商網站或其他第三方網站上下載。\n\n在您安裝了程式庫後，您可以通過單擊[選擇程式庫]手動選擇，或者通過單擊	[自動檢測程式庫]來讓 VeraCrypt 發現和選擇(僅會搜索 Windows 系統目錄，比較耗費時間)。</entry>
+    <entry lang="zh-hk" key="SELECT_PKCS11_MODULE_HELP">注意：對於安裝到您電腦上的 PKCS #11 程式庫以及安全性權杖或智慧卡的檔案名和位置，請參考安全性權杖、智慧卡的文檔，或者參考第三方軟件。\n\n單擊[確定] 按鈕選擇路徑和檔案名。</entry>
+    <entry lang="zh-hk" key="NO_PKCS11_MODULE_SPECIFIED">為了讓 VeraCrypt 可以存取安全性權杖或智慧卡，您需要為安全性權杖或智慧卡選擇一個 PKCS #11 程式庫。要做到這點，請選擇[設定] &gt; [安全性權杖]。</entry>
+    <entry lang="zh-hk" key="PKCS11_MODULE_INIT_FAILED">初始化 PKCS #11 安全性權杖程式庫失敗。\n\n請確認指定路徑和檔案名對應有效的 PKCS #11 程式庫。要指定 PKCS #11 程式庫路徑和檔案名，選擇 [設定] &gt; [安全性權杖]。</entry>
+    <entry lang="zh-hk" key="PKCS11_MODULE_AUTO_DETECTION_FAILED">在 Windows 系統目錄未發現 PKCS #11 程式庫。\n\n請確認您的安全性權杖或智慧卡已經安裝了 PKCS #11 程式庫(這些程式庫可能已經隨裝置提供，或者可以從供應商網站或其他第三方網站上下載)。如果是被安裝到 Windows 系統目錄之外的地方，請按[選擇程式庫]來定位程式庫位置(例如：安全性權杖/智能卡 的安裝資料夾。</entry>
+    <entry lang="zh-hk" key="NO_TOKENS_FOUND">未發現安全性權杖。\n\n請確認您的安全性權杖已經連接到您的電腦上並且已經安裝好了正確的裝置驅動程式程式。</entry>
+    <entry lang="zh-hk" key="TOKEN_KEYFILE_NOT_FOUND">安全性權杖加密鑰檔案未發現。</entry>
+    <entry lang="zh-hk" key="TOKEN_KEYFILE_ALREADY_EXISTS">已經存在同名的安全性權杖加密鑰檔案。</entry>
     <entry lang="zh-hk" key="CONFIRM_SEL_FILES_DELETE">您想要刪除指定檔案嗎？</entry>
-    <entry lang="zh-hk" key="INVALID_TOKEN_KEYFILE_PATH">安全權杖加密鑰檔案路徑無效。</entry>
-    <entry lang="zh-hk" key="SECURITY_TOKEN_ERROR">安全權杖錯誤</entry>
-    <entry lang="zh-hk" key="CKR_PIN_INCORRECT">安全權杖密碼不正確。</entry>
-    <entry lang="zh-hk" key="CKR_DEVICE_MEMORY">安全權杖無足夠的 記憶體/空間 來執行請求的操作。\n\n如果您嘗試匯入一個加密鑰檔案，您應該選擇一個細一些的檔或使用由 VeraCrypt 產生的加密鑰檔案(選擇 [工具] &gt; [加密鑰檔案產生器])。</entry>
-    <entry lang="zh-hk" key="ALL_TOKEN_SESSIONS_CLOSED">所有開啟的安全權杖工作階段均已經關閉。</entry>
-    <entry lang="zh-hk" key="SELECT_TOKEN_KEYFILES">選擇安全權杖中的加密鑰檔案</entry>
+    <entry lang="zh-hk" key="INVALID_TOKEN_KEYFILE_PATH">安全性權杖加密鑰檔案路徑無效。</entry>
+    <entry lang="zh-hk" key="SECURITY_TOKEN_ERROR">安全性權杖錯誤</entry>
+    <entry lang="zh-hk" key="CKR_PIN_INCORRECT">安全性權杖密碼不正確。</entry>
+    <entry lang="zh-hk" key="CKR_DEVICE_MEMORY">安全性權杖無足夠的 記憶體/空間 來執行請求的操作。\n\n如果您嘗試匯入一個加密鑰檔案，您應該選擇一個細一些的檔或使用由 VeraCrypt 產生的加密鑰檔案(選擇 [工具] &gt; [加密鑰檔案產生器])。</entry>
+    <entry lang="zh-hk" key="ALL_TOKEN_SESSIONS_CLOSED">所有開啟的安全性權杖工作階段均已經關閉。</entry>
+    <entry lang="zh-hk" key="SELECT_TOKEN_KEYFILES">選擇安全性權杖中的加密鑰檔案</entry>
     <entry lang="zh-hk" key="TOKEN_SLOT_ID">插槽</entry>
-    <entry lang="zh-hk" key="TOKEN_NAME">安全權杖名稱</entry>
+    <entry lang="zh-hk" key="TOKEN_NAME">安全性權杖名稱</entry>
     <entry lang="zh-hk" key="TOKEN_DATA_OBJECT_LABEL">檔案名稱</entry>
     <entry lang="zh-hk" key="BOOT_PASSWORD_CACHE_KEYBOARD_WARNING">重要：請注意，啟動驗證的密碼總是以美國鍵盤配置輸入的。因此，對於使用非美國鍵盤配置輸入密碼的加密區，在使用暫存的密碼掛載時是不可能被掛載的(注意這不是 VeraCrypt 的程式缺陷)。要允許這樣的加密區使用啟動驗證密碼掛載，請依照以下步驟：\n\n1)按[選擇檔案]或[選擇裝置]並選擇加密區。 2)選擇[加密區]&gt;[更改加密區密碼]。 3)輸入當前加密區的密碼。 4)更改鍵盤配置為 English (US)，通過按 Windows 通知欄上的語言欄和選擇[英語(美國)]。 5)在 VeraCrypt，在新密碼位置，輸入啟動驗證密碼。 6)在確認密碼位置重複輸入密碼，之後按[確定]。警告：如果您採用這些步驟，請牢記，加密區密碼總是只能以美國鍵盤配置輸入(這樣才能在啟動驗證環境中自動匹配)。</entry>
     <entry lang="zh-hk" key="SYS_FAVORITES_KEYBOARD_WARNING">系統最愛加密區將會以啟動驗證密碼掛載。如果任何系統最愛加密區使用了不同的密碼，它將不會被掛載。</entry>
@@ -1464,7 +1464,7 @@
     <entry lang="zh-hk" key="LINUX_PREF_TAB_SYSTEM_INTEGRATION_EXPLORER">檔案瀏覽器</entry>
     <entry lang="zh-hk" key="LINUX_PREF_TAB_PERFORMANCE">效能</entry>
     <entry lang="zh-hk" key="LINUX_PREF_TAB_KEYFILES">加密鑰檔案</entry>
-    <entry lang="zh-hk" key="LINUX_PREF_TAB_TOKENS">安全權杖</entry>
+    <entry lang="zh-hk" key="LINUX_PREF_TAB_TOKENS">安全性權杖</entry>
     <entry lang="zh-hk" key="LINUX_PREF_KERNEL_SERVICES">系統核心服務</entry>
     <entry lang="zh-hk" key="LINUX_PREF_KERNEL_CRYPT">不要使用系統核心加密服務</entry>
     <entry lang="zh-hk" key="LINUX_PREF_TAB_MOUNT_OPTIONS_FS">檔案系統</entry>
