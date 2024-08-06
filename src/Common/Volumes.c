@@ -130,19 +130,19 @@
 
 
 
-uint16 GetHeaderField16 (byte *header, int offset)
+uint16 GetHeaderField16 (uint8 *header, int offset)
 {
 	return BE16 (*(uint16 *) (header + offset));
 }
 
 
-uint32 GetHeaderField32 (byte *header, int offset)
+uint32 GetHeaderField32 (uint8 *header, int offset)
 {
 	return BE32 (*(uint32 *) (header + offset));
 }
 
 
-UINT64_STRUCT GetHeaderField64 (byte *header, int offset)
+UINT64_STRUCT GetHeaderField64 (uint8 *header, int offset)
 {
 	UINT64_STRUCT uint64Struct;
 
@@ -597,6 +597,14 @@ KeyReady:	;
 					goto err;
 				}
 
+				// check that first half of keyInfo.master_keydata is different from the second half. If they are the same return error
+				if (memcmp (keyInfo->master_keydata, keyInfo->master_keydata + EAGetKeySize (cryptoInfo->ea), EAGetKeySize (cryptoInfo->ea)) == 0)
+				{
+					cryptoInfo->bVulnerableMasterKey = TRUE;
+					if (retHeaderCryptoInfo)
+						retHeaderCryptoInfo->bVulnerableMasterKey = TRUE;
+				}
+
 				status = ERR_SUCCESS;
 				goto ret;
 			}
@@ -640,7 +648,7 @@ ret:
 }
 
 #if defined(_WIN32) && !defined(_UEFI)
-void ComputeBootloaderFingerprint (byte *bootLoaderBuf, unsigned int bootLoaderSize, byte* fingerprint)
+void ComputeBootloaderFingerprint (uint8 *bootLoaderBuf, unsigned int bootLoaderSize, uint8* fingerprint)
 {
 	// compute Whirlpool+SHA512 fingerprint of bootloader including MBR
 	// we skip user configuration fields:
@@ -1214,13 +1222,13 @@ err:
 }
 
 #if !defined(_UEFI)
-BOOL ReadEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, byte *header, DWORD *bytesRead)
+BOOL ReadEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, uint8 *header, DWORD *bytesRead)
 {
 #if TC_VOLUME_HEADER_EFFECTIVE_SIZE > TC_MAX_VOLUME_SECTOR_SIZE
 #error TC_VOLUME_HEADER_EFFECTIVE_SIZE > TC_MAX_VOLUME_SECTOR_SIZE
 #endif
 
-	byte sectorBuffer[TC_MAX_VOLUME_SECTOR_SIZE];
+	uint8 sectorBuffer[TC_MAX_VOLUME_SECTOR_SIZE];
 	DISK_GEOMETRY geometry;
 
 	if (!device)
@@ -1247,13 +1255,13 @@ BOOL ReadEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, byte *header, DW
 }
 
 
-BOOL WriteEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, byte *header)
+BOOL WriteEffectiveVolumeHeader (BOOL device, HANDLE fileHandle, uint8 *header)
 {
 #if TC_VOLUME_HEADER_EFFECTIVE_SIZE > TC_MAX_VOLUME_SECTOR_SIZE
 #error TC_VOLUME_HEADER_EFFECTIVE_SIZE > TC_MAX_VOLUME_SECTOR_SIZE
 #endif
 
-	byte sectorBuffer[TC_MAX_VOLUME_SECTOR_SIZE];
+	uint8 sectorBuffer[TC_MAX_VOLUME_SECTOR_SIZE];
 	DWORD bytesDone;
 	DISK_GEOMETRY geometry;
 
@@ -1322,7 +1330,7 @@ int WriteRandomDataToReservedHeaderAreas (HWND hwndDlg, HANDLE dev, CRYPTO_INFO 
 	char temporaryKey[MASTER_KEYDATA_SIZE];
 	char originalK2[MASTER_KEYDATA_SIZE];
 
-	byte buf[TC_VOLUME_HEADER_GROUP_SIZE];
+	uint8 buf[TC_VOLUME_HEADER_GROUP_SIZE];
 
 	LARGE_INTEGER offset;
 	int nStatus = ERR_SUCCESS;

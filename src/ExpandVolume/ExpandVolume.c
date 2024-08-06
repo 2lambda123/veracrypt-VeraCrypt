@@ -518,7 +518,7 @@ static int ExpandVolume (HWND hwndDlg, wchar_t *lpszVolume, Password *pVolumePas
 	BOOL bTimeStampValid = FALSE;
 	LARGE_INTEGER headerOffset;
 	BOOL backupHeader;
-	byte *wipeBuffer = NULL;
+	uint8 *wipeBuffer = NULL;
 	uint32 workChunkSize = TC_VOLUME_HEADER_GROUP_SIZE;
 #ifdef _WIN64
 	CRYPTO_INFO tmpCI;
@@ -690,6 +690,12 @@ static int ExpandVolume (HWND hwndDlg, wchar_t *lpszVolume, Password *pVolumePas
 	nStatus = ReadVolumeHeader (FALSE, buffer, pVolumePassword, VolumePkcs5, VolumePim, &cryptoInfo, NULL);
 	if (nStatus == ERR_CIPHER_INIT_WEAK_KEY)
 		nStatus = 0;	// We can ignore this error here
+
+	// if the volume master key is vulnerable, print a warning to inform the user
+	if (cryptoInfo->bVulnerableMasterKey)
+	{
+		DebugAddProgressDlgStatus(hwndDlg, GetString ("ERR_XTS_MASTERKEY_VULNERABLE_SHORT"));
+	}
 
 	if (nStatus != 0)
 	{
@@ -1023,9 +1029,9 @@ static int ExpandVolume (HWND hwndDlg, wchar_t *lpszVolume, Password *pVolumePas
 	/* wipe old backup header */
 	if ( !cryptoInfo->LegacyVolume )
 	{
-		byte wipeRandChars [TC_WIPE_RAND_CHAR_COUNT];
-		byte wipeRandCharsUpdate [TC_WIPE_RAND_CHAR_COUNT];
-		byte wipePass;
+		uint8 wipeRandChars [TC_WIPE_RAND_CHAR_COUNT];
+		uint8 wipeRandCharsUpdate [TC_WIPE_RAND_CHAR_COUNT];
+		uint8 wipePass;
 		UINT64_STRUCT unitNo;
 		LARGE_INTEGER offset;
 		WipeAlgorithmId wipeAlgorithm = TC_WIPE_35_GUTMANN;
@@ -1040,7 +1046,7 @@ static int ExpandVolume (HWND hwndDlg, wchar_t *lpszVolume, Password *pVolumePas
 
 		DebugAddProgressDlgStatus(hwndDlg, GetString("EXPANDER_WIPING_OLD_HEADER"));
 
-		wipeBuffer = (byte *) TCalloc (workChunkSize);
+		wipeBuffer = (uint8 *) TCalloc (workChunkSize);
 		if (!wipeBuffer)
 		{
 			nStatus = ERR_OUTOFMEMORY;

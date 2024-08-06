@@ -2156,7 +2156,7 @@ BOOL CALLBACK AboutDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lParam
 			L"Based on TrueCrypt 7.1a, freely available at http://www.truecrypt.org/ .\r\n\r\n"
 
 			L"Portions of this software:\r\n"
-			L"Copyright \xA9 2013-2023 IDRIX. All rights reserved.\r\n"
+			L"Copyright \xA9 2013-2024 IDRIX. All rights reserved.\r\n"
 			L"Copyright \xA9 2003-2012 TrueCrypt Developers Association. All Rights Reserved.\r\n"
 			L"Copyright \xA9 1998-2000 Paul Le Roux. All Rights Reserved.\r\n"
 			L"Copyright \xA9 1998-2008 Brian Gladman. All Rights Reserved.\r\n"
@@ -2169,7 +2169,7 @@ BOOL CALLBACK AboutDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam, LPARAM lParam
 			L"Copyright \xA9 1999-2023 Igor Pavlov\r\n\r\n"
 
 			L"This software as a whole:\r\n"
-			L"Copyright \xA9 2013-2023 IDRIX. All rights reserved.\r\n\r\n"
+			L"Copyright \xA9 2013-2024 IDRIX. All rights reserved.\r\n\r\n"
 
 			L"An IDRIX Release");
 
@@ -2884,7 +2884,7 @@ LRESULT CALLBACK CustomDlgProc (HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 static BOOL IsReturnAddress (DWORD64 address)
 {
 	static size_t codeEnd = 0;
-	byte *sp = (byte *) address;
+	uint8 *sp = (uint8 *) address;
 
 	if (codeEnd == 0)
 	{
@@ -3018,7 +3018,7 @@ void ExceptionHandlerThread (void *threadArg)
 
 	MEMORY_BASIC_INFORMATION mi;
 	VirtualQuery (sp, &mi, sizeof (mi));
-	PDWORD stackTop = (PDWORD)((byte *) mi.BaseAddress + mi.RegionSize);
+	PDWORD stackTop = (PDWORD)((uint8 *) mi.BaseAddress + mi.RegionSize);
 	int i = 0;
 
 	while (retAddrs.size() < 16 && &sp[i] < stackTop)
@@ -5577,6 +5577,14 @@ void handleError (HWND hwndDlg, int code, const char* srcPos)
 		break;
 #endif
 
+	case ERR_XTS_MASTERKEY_VULNERABLE:
+		MessageBoxW (hwndDlg, AppendSrcPos (GetString ("ERR_XTS_MASTERKEY_VULNERABLE"), srcPos).c_str(), lpszTitle, ICON_HAND);
+		break;
+
+	case ERR_SYSENC_XTS_MASTERKEY_VULNERABLE:
+		MessageBoxW (hwndDlg, AppendSrcPos (GetString ("ERR_SYSENC_XTS_MASTERKEY_VULNERABLE"), srcPos).c_str(), lpszTitle, ICON_HAND);
+		break;
+
 	default:
 		StringCbPrintfW (szTmp, sizeof(szTmp), GetString ("ERR_UNKNOWN"), code);
 		MessageBoxW (hwndDlg, AppendSrcPos (szTmp, srcPos).c_str(), lpszTitle, ICON_HAND);
@@ -5796,24 +5804,24 @@ wstring ArrayToHexWideString (const unsigned char* pbData, int cbData)
 	return result;
 }
 
-bool HexToByte (wchar_t c, byte& b)
+bool HexToByte (wchar_t c, uint8& b)
 {
 	bool bRet = true;
 	if (c >= L'0' && c <= L'9')
-		b = (byte) (c - L'0');
+		b = (uint8) (c - L'0');
 	else if (c >= L'a' && c <= L'z')
-		b = (byte) (c - L'a' + 10);
+		b = (uint8) (c - L'a' + 10);
 	else if (c >= L'A' && c <= L'Z')
-		b = (byte) (c - L'A' + 10);
+		b = (uint8) (c - L'A' + 10);
 	else
 		bRet = false;
 
 	return bRet;
 }
 
-bool HexWideStringToArray (const wchar_t* hexStr, std::vector<byte>& arr)
+bool HexWideStringToArray (const wchar_t* hexStr, std::vector<uint8>& arr)
 {
-	byte b1, b2;
+	uint8 b1, b2;
 	size_t i, len = wcslen (hexStr);
 
 	arr.clear();
@@ -8716,7 +8724,7 @@ retry:
 
 	if ((path.length () >= 3) && (_wcsnicmp (path.c_str(), L"ID:", 3) == 0))
 	{
-		std::vector<byte> arr;
+		std::vector<uint8> arr;
 		if (	(path.length() == (3 + 2*VOLUME_ID_SIZE)) 
 			&& HexWideStringToArray (path.c_str() + 3, arr)
 			&& (arr.size() == VOLUME_ID_SIZE)
@@ -8953,6 +8961,12 @@ retry:
 	
 	LastMountedVolumeDirty = mount.FilesystemDirty;
 
+	if (mount.VolumeMasterKeyVulnerable
+		&& !Silent)
+	{
+		Warning ("ERR_XTS_MASTERKEY_VULNERABLE", hwndDlg);
+	}
+
 	if (mount.FilesystemDirty)
 	{
 		wchar_t msg[1024];
@@ -9168,7 +9182,7 @@ BOOL IsMountedVolume (const wchar_t *volname)
 	if ((wcslen (volname) == (3 + 2*VOLUME_ID_SIZE)) && _wcsnicmp (volname, L"ID:", 3) == 0)
 	{
 		/* Volume ID specified. Use it for matching mounted volumes. */
-		std::vector<byte> arr;
+		std::vector<uint8> arr;
 		if (HexWideStringToArray (&volname[3], arr) && (arr.size() == VOLUME_ID_SIZE))
 		{
 			return IsMountedVolumeID (&arr[0]);
@@ -11577,7 +11591,7 @@ int OpenVolume (OpenVolumeContext *context, const wchar_t *volumePath, Password 
 
 		// Read volume header
 		DWORD bytesRead;
-		if (!ReadEffectiveVolumeHeader (context->IsDevice, context->HostFileHandle, (byte *) buffer, &bytesRead))
+		if (!ReadEffectiveVolumeHeader (context->IsDevice, context->HostFileHandle, (uint8 *) buffer, &bytesRead))
 		{
 			status = ERR_OS_ERROR;
 			goto error;
@@ -12162,7 +12176,7 @@ BOOL CALLBACK SecurityTokenKeyfileDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam
 					if (BrowseFiles (hwndDlg, "SELECT_KEYFILE", keyfilePath, bHistory, FALSE))
 					{
 						DWORD keyfileSize;
-						byte *keyfileData = (byte *) LoadFile (keyfilePath, &keyfileSize);
+						uint8 *keyfileData = (uint8 *) LoadFile (keyfilePath, &keyfileSize);
 						if (!keyfileData)
 						{
 							handleWin32Error (hwndDlg, SRC_POS);
@@ -12180,7 +12194,7 @@ BOOL CALLBACK SecurityTokenKeyfileDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam
 
 							if (DialogBoxParamW (hInst, MAKEINTRESOURCEW (IDD_NEW_TOKEN_KEYFILE), hwndDlg, (DLGPROC) NewSecurityTokenKeyfileDlgProc, (LPARAM) &newParams) == IDOK)
 							{
-								vector <byte> keyfileDataVector (keyfileSize);
+								vector <uint8> keyfileDataVector (keyfileSize);
 								memcpy (&keyfileDataVector.front(), keyfileData, keyfileSize);
 
 								try
@@ -12229,7 +12243,7 @@ BOOL CALLBACK SecurityTokenKeyfileDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam
 								WaitCursor();
 								finally_do ({ NormalCursor(); });
 
-								vector <byte> keyfileData;
+								vector <uint8> keyfileData;
 
 								keyfile->GetKeyfileData (keyfileData);
 
@@ -12240,7 +12254,7 @@ BOOL CALLBACK SecurityTokenKeyfileDlgProc (HWND hwndDlg, UINT msg, WPARAM wParam
 									return 1;
 								}
 
-								finally_do_arg (vector <byte> *, &keyfileData, { burn (&finally_arg->front(), finally_arg->size()); });
+								finally_do_arg (vector <uint8> *, &keyfileData, { burn (&finally_arg->front(), finally_arg->size()); });
 
 								if (!SaveBufferToFile ((char *) &keyfileData.front(), keyfilePath, (DWORD) keyfileData.size(), FALSE, FALSE))
 									throw SystemException (SRC_POS);
@@ -13023,7 +13037,7 @@ void CheckFilesystem (HWND hwndDlg, int driveNo, BOOL fixErrors)
 	ShellExecuteW (NULL, (!IsAdmin() && IsUacSupported()) ? L"runas" : L"open", cmdPath, param, NULL, SW_SHOW);
 }
 
-BOOL BufferContainsPattern (const byte *buffer, size_t bufferSize, const byte *pattern, size_t patternSize)
+BOOL BufferContainsPattern (const uint8 *buffer, size_t bufferSize, const uint8 *pattern, size_t patternSize)
 {
 	if (bufferSize < patternSize)
 		return FALSE;
@@ -13040,14 +13054,14 @@ BOOL BufferContainsPattern (const byte *buffer, size_t bufferSize, const byte *p
 }
 
 
-BOOL BufferContainsString (const byte *buffer, size_t bufferSize, const char *str)
+BOOL BufferContainsString (const uint8 *buffer, size_t bufferSize, const char *str)
 {
-	return BufferContainsPattern (buffer, bufferSize, (const byte*) str, strlen (str));
+	return BufferContainsPattern (buffer, bufferSize, (const uint8*) str, strlen (str));
 }
 
-BOOL BufferContainsWideString (const byte *buffer, size_t bufferSize, const wchar_t *str)
+BOOL BufferContainsWideString (const uint8 *buffer, size_t bufferSize, const wchar_t *str)
 {
-	return BufferContainsPattern (buffer, bufferSize, (const byte*) str, 2 * wcslen (str));
+	return BufferContainsPattern (buffer, bufferSize, (const uint8*) str, 2 * wcslen (str));
 }
 
 
@@ -13507,7 +13521,7 @@ void RegisterDriverInf (bool registerFilter, const string& filter, const string&
 					"[veracrypt_reg]\r\n"
 					"HKR,,\"" + filterReg + "\",0x0001" + string (registerFilter ? "0008" : "8002") + ",\"" + filter + "\"\r\n";
 
-	infFile.Write ((byte *) infTxt.c_str(), (DWORD) infTxt.size());
+	infFile.Write ((uint8 *) infTxt.c_str(), (DWORD) infTxt.size());
 	infFile.Close();
 
 	HINF hInf = SetupOpenInfFileW (infFileName.c_str(), NULL, INF_STYLE_OLDNT | INF_STYLE_WIN4, NULL);
@@ -13582,7 +13596,7 @@ void AllowMessageInUIPI (UINT msg)
 	ChangeWindowMessageFilter (msg, MSGFLT_ADD);
 }
 
-BOOL IsRepeatedByteArray (byte value, const byte* buffer, size_t bufferSize)
+BOOL IsRepeatedByteArray (uint8 value, const uint8* buffer, size_t bufferSize)
 {
 	if (buffer && bufferSize)
 	{
@@ -13606,7 +13620,7 @@ BOOL TranslateVolumeID (HWND hwndDlg, wchar_t* pathValue, size_t cchPathValue)
 	size_t pathLen = pathValue? wcslen (pathValue) : 0;
 	if ((pathLen >= 3) && (_wcsnicmp (pathValue, L"ID:", 3) == 0))
 	{
-		std::vector<byte> arr;
+		std::vector<uint8> arr;
 		if (	(pathLen == (3 + 2*VOLUME_ID_SIZE))
 			&& HexWideStringToArray (pathValue + 3, arr)
 			&& (arr.size() == VOLUME_ID_SIZE)
@@ -13907,20 +13921,33 @@ static unsigned int __stdcall SecureDesktopThread( LPVOID lpThreadParameter )
 	StringCbCopy(SecureDesktopName, sizeof (SecureDesktopName), pParam->szDesktopName);
 	pParam->hDesk = hSecureDesk;
 
-	// wait for SwitchDesktop to succeed before using it for current thread
-	while (true)
-	{
-		if (SwitchDesktop (hSecureDesk))
-		{
-			break;
-		}
-		Sleep (SECUREDESKTOP_MONOTIR_PERIOD);
-	}
-
 	bNewDesktopSet = SetThreadDesktop (hSecureDesk);
 
 	if (bNewDesktopSet)
 	{
+		// call ImmDisableIME　from imm32.dll to disable IME since it can create issue with secure desktop
+		// cf: https://keepass.info/help/kb/sec_desk.html#ime
+		HMODULE hImmDll = LoadLibraryEx (L"imm32.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
+		if (hImmDll)
+		{
+			typedef BOOL (WINAPI *ImmDisableIME_t)(DWORD);
+			ImmDisableIME_t ImmDisableIME = (ImmDisableIME_t) GetProcAddress (hImmDll, "ImmDisableIME");
+			if (ImmDisableIME)
+			{
+				ImmDisableIME (0);
+			}
+		}
+
+		// wait for SwitchDesktop to succeed before using it for current thread
+		while (true)
+		{
+			if (SwitchDesktop (hSecureDesk))
+			{
+				break;
+			}
+			Sleep (SECUREDESKTOP_MONOTIR_PERIOD);
+		}
+
 		// create the thread that will ensure that VeraCrypt secure desktop has always user input
 		// this is done only if the stop event is created successfully
 		HANDLE hStopEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
@@ -13950,6 +13977,12 @@ static unsigned int __stdcall SecureDesktopThread( LPVOID lpThreadParameter )
 		}
 
 		pParam->bDlgDisplayed = TRUE;
+
+		// free imm32.dll handle
+		if (hImmDll)
+		{
+			FreeLibrary (hImmDll);
+		}
 	}
 	else
 	{
@@ -14070,19 +14103,20 @@ INT_PTR SecureDesktopDialogBoxParam(
 					// dialog box was indeed displayed in Secure Desktop
 					retValue = param.retValue;
 					bSuccess = TRUE;
-				}
-			}
 
-			if (param.hDesk)
-			{	
-				while (!SwitchDesktop (hOriginalDesk))
+					// switch back to the original desktop
+					while (!SwitchDesktop (hOriginalDesk))
+					{
+						Sleep (SECUREDESKTOP_MONOTIR_PERIOD);
+					}
+
+					SetThreadDesktop (hOriginalDesk);
+				}
+
+				if (param.hDesk)
 				{
-					Sleep (SECUREDESKTOP_MONOTIR_PERIOD);
+					CloseDesktop (param.hDesk);
 				}
-
-				SetThreadDesktop (hOriginalDesk);
-
-				CloseDesktop (param.hDesk);
 			}
 
 			// get the new list of ctfmon.exe processes in order to find the ID of the
@@ -14240,9 +14274,11 @@ BOOL BufferHasPattern (const unsigned char* buffer, size_t bufferLen, const void
 	return bRet;
 }
 
-/* Implementation borrowed from KeePassXC source code (https://github.com/keepassxreboot/keepassxc/blob/release/2.4.0/src/core/Bootstrap.cpp#L150) 
+/* Implementation borrowed from KeePassXC source code (https://github.com/keepassxreboot/keepassxc/blob/2.7.8/src/core/Bootstrap.cpp#L121) 
  *
  * Reduce current user acess rights for this process to the minimum in order to forbid non-admin users from reading the process memory.
+ * Restrict access to changing DACL's after the process is started. This prevents the creator of veracrypt process from simply adding 
+ * the permission to read memory back to the DACL list.
  */
 BOOL ActivateMemoryProtection()
 {
@@ -14252,6 +14288,8 @@ BOOL ActivateMemoryProtection()
     HANDLE hToken = NULL;
     PTOKEN_USER pTokenUser = NULL;
     DWORD cbBufferSize = 0;
+    PSID pOwnerRightsSid = NULL;
+    DWORD pOwnerRightsSidSize = SECURITY_MAX_SID_SIZE;
 
     // Access control list
     PACL pACL = NULL;
@@ -14292,8 +14330,19 @@ BOOL ActivateMemoryProtection()
         goto Cleanup;
     }
 
+    // Retrieve CreaterOwnerRights SID
+    pOwnerRightsSid = (PSID) HeapAlloc(GetProcessHeap(), 0, pOwnerRightsSidSize);
+    if (pOwnerRightsSid == NULL) {
+        goto Cleanup;
+    }
+
+    if (!CreateWellKnownSid(WinCreatorOwnerRightsSid, NULL, pOwnerRightsSid, &pOwnerRightsSidSize)) {
+        goto Cleanup;
+    }
+
     // Calculate the amount of memory that must be allocated for the DACL
-    cbACL = sizeof(ACL) + sizeof(ACCESS_ALLOWED_ACE) + GetLengthSid(pTokenUser->User.Sid);
+    cbACL = sizeof(ACL) + sizeof(ACCESS_ALLOWED_ACE) + GetLengthSid(pTokenUser->User.Sid) 
+        + sizeof(ACCESS_ALLOWED_ACE) + GetLengthSid(pOwnerRightsSid);
 
     // Create and initialize an ACL
     pACL = (PACL) HeapAlloc(GetProcessHeap(), 0, cbACL);
@@ -14315,6 +14364,17 @@ BOOL ActivateMemoryProtection()
         goto Cleanup;
     }
 
+    // Explicitly set "Process Owner" rights to Read Only. The default is Full Control.
+    if (!AddAccessAllowedAce(
+            pACL,
+            ACL_REVISION,
+            READ_CONTROL,
+            pOwnerRightsSid
+            )) {
+        goto Cleanup;
+    }
+
+
     // Set discretionary access control list
     bSuccess = (ERROR_SUCCESS == SetSecurityInfo(GetCurrentProcess(), // object handle
                                     SE_KERNEL_OBJECT, // type of object
@@ -14332,6 +14392,9 @@ Cleanup:
 
     if (pACL != NULL) {
         HeapFree(GetProcessHeap(), 0, pACL);
+    }
+    if (pOwnerRightsSid != NULL) {
+        HeapFree(GetProcessHeap(), 0, pOwnerRightsSid);
     }
     if (pTokenUser != NULL) {
         HeapFree(GetProcessHeap(), 0, pTokenUser);
@@ -14729,7 +14792,7 @@ void GetAppRandomSeed (unsigned char* pbRandSeed, size_t cbRandSeed)
 {
 	LARGE_INTEGER iSeed;
 	SYSTEMTIME sysTime;
-	byte digest[WHIRLPOOL_DIGESTSIZE];
+	uint8 digest[WHIRLPOOL_DIGESTSIZE];
 	WHIRLPOOL_CTX tctx;
 	size_t count;
 
