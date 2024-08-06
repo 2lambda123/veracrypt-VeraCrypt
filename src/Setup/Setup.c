@@ -74,6 +74,8 @@ BOOL UnloadDriver = TRUE;
 BOOL bSystemRestore = TRUE;
 BOOL bDisableSwapFiles = FALSE;
 BOOL bForAllUsers = TRUE;
+BOOL bDisableMemoryProtection = FALSE;
+BOOL bOriginalDisableMemoryProtection = FALSE;
 BOOL bRegisterFileExt = TRUE;
 BOOL bAddToStartMenu = TRUE;
 BOOL bDesktopIcon = TRUE;
@@ -570,25 +572,12 @@ BOOL IsSystemRestoreEnabled ()
 	GetRestorePointRegKeyName (szRegPath, sizeof (szRegPath));
 	if (RegOpenKeyEx (HKEY_LOCAL_MACHINE, szRegPath, 0, KEY_READ | KEY_WOW64_64KEY, &hKey) == ERROR_SUCCESS)
 	{
-		if (IsOSAtLeast (WIN_VISTA))
+		if (	(ERROR_SUCCESS == RegQueryValueEx (hKey, L"RPSessionInterval", NULL, NULL, (LPBYTE) &dwValue, &cbValue))
+			&&	(dwValue == 1)
+			)
 		{
-			if (	(ERROR_SUCCESS == RegQueryValueEx (hKey, L"RPSessionInterval", NULL, NULL, (LPBYTE) &dwValue, &cbValue))
-				&&	(dwValue == 1)
-				)
-			{
-				bEnabled = TRUE;
-			}
+			bEnabled = TRUE;
 		}
-		else
-		{
-			if (	(ERROR_SUCCESS == RegQueryValueEx (hKey, L"DisableSR", NULL, NULL, (LPBYTE) &dwValue, &cbValue))
-				&&	(dwValue == 0)
-				)
-			{
-				bEnabled = TRUE;
-			}
-		}
-
 
 		RegCloseKey (hKey);
 	}
@@ -1357,13 +1346,10 @@ error:
 	}
 
 	// Register COM servers for UAC
-	if (IsOSAtLeast (WIN_VISTA))
+	if (!RegisterComServers (szDir))
 	{
-		if (!RegisterComServers (szDir))
-		{
-			Error ("COM_REG_FAILED", hwndDlg);
-			return FALSE;
-		}
+		Error ("COM_REG_FAILED", hwndDlg);
+		return FALSE;
 	}
 
 	return bOK;
@@ -1436,16 +1422,9 @@ BOOL DoApplicationDataUninstall (HWND hwndDlg)
 BOOL DoRegUninstall (HWND hwndDlg, BOOL bRemoveDeprecated)
 {
 	wchar_t regk [64];
-	typedef LSTATUS (WINAPI *RegDeleteKeyExWFn) (HKEY hKey,LPCWSTR lpSubKey,REGSAM samDesired,WORD Reserved);
-	RegDeleteKeyExWFn RegDeleteKeyExWPtr = NULL;
-	HMODULE hAdvapiDll = LoadLibrary (L"Advapi32.dll");
-	if (hAdvapiDll)
-	{
-		RegDeleteKeyExWPtr = (RegDeleteKeyExWFn) GetProcAddress(hAdvapiDll, "RegDeleteKeyExW");
-	}
 
 	// Unregister COM servers
-	if (!bRemoveDeprecated && IsOSAtLeast (WIN_VISTA))
+	if (!bRemoveDeprecated)
 	{
 		if (!UnregisterComServers (InstallationPath))
 			StatusMessage (hwndDlg, "COM_DEREG_FAILED");
@@ -1454,16 +1433,9 @@ BOOL DoRegUninstall (HWND hwndDlg, BOOL bRemoveDeprecated)
 	if (!bRemoveDeprecated)
 		StatusMessage (hwndDlg, "REMOVING_REG");
 
-	if (RegDeleteKeyExWPtr)
-	{
-		RegDeleteKeyExWPtr (HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\VeraCrypt", KEY_WOW64_32KEY, 0);
-		RegDeleteKeyExWPtr (HKEY_CURRENT_USER, L"Software\\VeraCrypt", KEY_WOW64_32KEY, 0);
-	}
-	else
-	{
-		RegDeleteKey (HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\VeraCrypt");
-		RegDeleteKey (HKEY_LOCAL_MACHINE, L"Software\\VeraCrypt");
-	}
+	RegDeleteKeyExW (HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\VeraCrypt", KEY_WOW64_32KEY, 0);
+	RegDeleteKeyExW (HKEY_CURRENT_USER, L"Software\\VeraCrypt", KEY_WOW64_32KEY, 0);
+
 	RegDeleteKey (HKEY_LOCAL_MACHINE, L"Software\\Classes\\VeraCryptVolume\\Shell\\open\\command");
 	RegDeleteKey (HKEY_LOCAL_MACHINE, L"Software\\Classes\\VeraCryptVolume\\Shell\\open");
 	RegDeleteKey (HKEY_LOCAL_MACHINE, L"Software\\Classes\\VeraCryptVolume\\Shell");
@@ -1501,9 +1473,6 @@ BOOL DoRegUninstall (HWND hwndDlg, BOOL bRemoveDeprecated)
 
 		SHChangeNotify (SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
 	}
-
-	if (hAdvapiDll)
-		FreeLibrary (hAdvapiDll);
 
 	return TRUE;
 }
@@ -2368,6 +2337,12 @@ void DoInstall (void *arg)
 	if (bSystemRestore)
 		SetSystemRestorePoint (hwndDlg, TRUE);
 
+	if (bOK && (bDisableMemoryProtection != bOriginalDisableMemoryProtection))
+	{
+		WriteMemoryProtectionConfig(bDisableMemoryProtection? FALSE : TRUE);
+		bRestartRequired = TRUE; // Restart is required to apply the new memory protection settings
+	}
+
 	if (bOK)
 	{
 		UpdateProgressBarProc(100);
@@ -2618,7 +2593,7 @@ static tLanguageEntry g_languagesEntries[] = {
 	{L"Ўзбекча", IDR_LANG_UZ, LANG_UZBEK, "uz", NULL},
 	{L"Tiếng Việt", IDR_LANG_VI, LANG_VIETNAMESE, "vi", NULL},
 	{L"简体中文", IDR_LANG_ZHCN, LANG_CHINESE, "zh-cn", L"zh-CN"},
-	{L"繁體中文", IDR_LANG_ZHHK, LANG_CHINESE, "zh-hk", L"zh-HK"},
+	{L"繁體中文(香港)", IDR_LANG_ZHHK, LANG_CHINESE, "zh-hk", L"zh-HK"},
 	{L"繁體中文", IDR_LANG_ZHTW, LANG_CHINESE, "zh-tw", L"zh-TW"},
 };
 
@@ -2782,7 +2757,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 	if (IsAdmin () != TRUE)
 		if (MessageBoxW (NULL, GetString ("SETUP_ADMIN"), lpszTitle, MB_YESNO | MB_ICONQUESTION) != IDYES)
 		{
-			FinalizeApp ();
 			exit (1);
 		}
 #endif
@@ -2835,7 +2809,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 #else
 				MessageBox (NULL, L"Error: This portable installer file does not contain any compressed files.\n\nTo create a self-extracting portable installation package (with embedded compressed files), run:\n\"VeraCrypt Portable.exe\" /p", L"VeraCrypt", MB_ICONERROR | MB_SETFOREGROUND | MB_TOPMOST);
 #endif
-				FinalizeApp ();
 				exit (1);
 			}
 
@@ -2856,7 +2829,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 					bUninstall = TRUE;
 					break;
 				default:
-					FinalizeApp ();
 					exit (1);
 				}
 			}
@@ -2882,7 +2854,7 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 
 		if (!bUninstall)
 		{
-			if (!bDevm && !LocalizationActive && (nCurrentOS >= WIN_VISTA))
+			if (!bDevm && !LocalizationActive)
 			{
 				BOOL bHasPreferredLanguage = (strlen (GetPreferredLangId ()) > 0)? TRUE : FALSE;
 				if ((IDCANCEL == DialogBoxParamW (hInstance, MAKEINTRESOURCEW (IDD_INSTALL_LANGUAGE), NULL, (DLGPROC) SelectLanguageDialogProc, (LPARAM) 0 ))
@@ -2890,7 +2862,6 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 					)
 				{
 					// Language dialog cancelled by user: exit the installer
-					FinalizeApp ();
 					exit (1);
 				}
 			}
@@ -2927,6 +2898,5 @@ int WINAPI wWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpsz
 		}
 #endif
 	}
-	FinalizeApp ();
 	return 0;
 }

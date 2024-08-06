@@ -510,9 +510,9 @@ namespace VeraCrypt
 		EX2MSG (EMVIccCertNotFound,					LangString["EMV_ICC_CERT_NOTFOUND"]);
 		EX2MSG (EMVIssuerCertNotFound,				LangString["EMV_ISSUER_CERT_NOTFOUND"]);
 		EX2MSG (EMVCPLCNotFound,					LangString["EMV_CPLC_NOTFOUND"]);
-		EX2MSG (InvalidEMVPath,						LangString["EMV_PAN_NOTFOUND"]);
-		EX2MSG (EMVKeyfileDataNotFound,				LangString["INVALID_EMV_PATH"]);
-		EX2MSG (EMVPANNotFound,						LangString["EMV_KEYFILE_DATA_NOTFOUND"]);
+		EX2MSG (InvalidEMVPath,						LangString["INVALID_EMV_PATH"]);
+		EX2MSG (EMVKeyfileDataNotFound,				LangString["EMV_KEYFILE_DATA_NOTFOUND"]);
+		EX2MSG (EMVPANNotFound,						LangString["EMV_PAN_NOTFOUND"]);
 
 #if defined (TC_LINUX)
 		EX2MSG (TerminalNotFound,					LangString["LINUX_EX2MSG_TERMINALNOTFOUND"]);
@@ -1208,7 +1208,8 @@ namespace VeraCrypt
 					" Display password characters while typing.\n"
 					"\n"
 					"--encryption=ENCRYPTION_ALGORITHM\n"
-					" Use specified encryption algorithm when creating a new volume. When cascasing algorithms, they must be seperated by a dash. For example: AES-Twofish. \n"
+					" Use specified encryption algorithm when creating a new volume. When cascading\n"
+					" algorithms, they must be separated by a dash. For example: AES-Twofish.\n"
 					"\n"
 					"--filesystem=TYPE\n"
 					" Filesystem type to mount. The TYPE argument is passed to mount(8) command\n"

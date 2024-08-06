@@ -59,7 +59,7 @@ extern unsigned short _rotl16(unsigned short value, unsigned char shift);
 #define TC_APP_NAME						"VeraCrypt"
 
 // Version displayed to user 
-#define VERSION_STRING					"1.26.4"
+#define VERSION_STRING					"1.26.10"
 
 #ifdef VC_EFI_CUSTOM_MODE
 #define VERSION_STRING_SUFFIX			"-CustomEFI"
@@ -73,9 +73,9 @@ extern unsigned short _rotl16(unsigned short value, unsigned char shift);
 #define VERSION_NUM						0x0126
 
 // Release date
-#define TC_STR_RELEASE_DATE			L"July 24, 2023"
+#define TC_STR_RELEASE_DATE			L"November 8, 2023"
 #define TC_RELEASE_DATE_YEAR			2023
-#define TC_RELEASE_DATE_MONTH			 07
+#define TC_RELEASE_DATE_MONTH			 11
 
 #define BYTES_PER_KB                    1024LL
 #define BYTES_PER_MB                    1048576LL
@@ -305,6 +305,10 @@ typedef NTSTATUS (NTAPI *ExGetFirmwareEnvironmentVariableFn) (
   PULONG          Attributes
 );
 
+typedef ULONG64 (NTAPI *KeQueryInterruptTimePreciseFn)(
+  PULONG64 QpcTimeStamp
+);
+
 typedef BOOLEAN (NTAPI *KeAreAllApcsDisabledFn) ();
 
 typedef void (NTAPI *KeSetSystemGroupAffinityThreadFn)(
@@ -344,7 +348,11 @@ extern BOOLEAN VC_KeAreAllApcsDisabled (VOID);
 
 #ifndef TC_LOCAL_WIN32_WINNT_OVERRIDE
 #	undef _WIN32_WINNT
-#	define	_WIN32_WINNT 0x0501	/* Does not apply to the driver */
+#ifdef _M_ARM64
+#	define  _WIN32_WINNT 0x0A00
+#else
+#	define	_WIN32_WINNT 0x0601	/* Does not apply to the driver */
+#endif
 #endif
 
 #include <windows.h>		/* Windows header */

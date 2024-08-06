@@ -737,6 +737,7 @@ namespace VeraCrypt
 #ifdef TC_MACOSX
 		if (event.GetActive() && Gui->IsInBackgroundMode())
 			Gui->SetBackgroundMode (false);
+		EnsureVisible();
 #endif
 		event.Skip();
 	}
@@ -1064,6 +1065,17 @@ namespace VeraCrypt
 #endif
 		PreferencesDialog dialog (this);
 		dialog.SelectPage (dialog.HotkeysPage);
+		dialog.ShowModal();
+	}
+
+	void MainFrame::OnLanguageMenuItemSelected (wxCommandEvent& event)
+	{
+#ifdef TC_MACOSX
+		if (Gui->IsInBackgroundMode())
+			Gui->SetBackgroundMode (false);
+#endif
+		PreferencesDialog dialog (this);
+		dialog.SelectPage (dialog.LanguagesPage);
 		dialog.ShowModal();
 	}
 

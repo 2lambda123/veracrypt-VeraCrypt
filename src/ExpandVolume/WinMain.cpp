@@ -836,7 +836,7 @@ int ExtcvAskVolumePassword (HWND hwndDlg, const wchar_t* fileName, Password *pas
 
 static BOOL SelectContainer (HWND hwndDlg)
 {
-	if (BrowseFiles (hwndDlg, "OPEN_VOL_TITLE", szFileName, bHistory, FALSE, NULL) == FALSE)
+	if (BrowseFiles (hwndDlg, "OPEN_VOL_TITLE", szFileName, bHistory, FALSE) == FALSE)
 		return FALSE;
 
 	AddComboItem (GetDlgItem (hwndDlg, IDC_VOLUME), szFileName, bHistory);
@@ -962,7 +962,7 @@ BOOL CALLBACK MainDialogProc (HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPa
 			if (EnableMemoryProtection)
 			{
 				/* Protect this process memory from being accessed by non-admin users */
-				EnableProcessProtection ();
+				ActivateMemoryProtection ();
 			}
 
 			InitMainDialog (hwndDlg);

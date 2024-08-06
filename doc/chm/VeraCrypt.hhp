@@ -16,6 +16,7 @@ AES.html
 arrow_right.gif
 Authenticity and Integrity.html
 Authors.html
+Avoid Third-Party File Extensions.html
 bank_30x30.png
 BC_Logo_30x30.png
 BCH_Logo_48x30.png
@@ -174,6 +175,8 @@ Using VeraCrypt Without Administrator Privileges.html
 VeraCrypt Background Task.html
 VeraCrypt Hidden Operating System.html
 VeraCrypt License.html
+VeraCrypt Memory Protection.html
+VeraCrypt RAM Encryption.html
 VeraCrypt Rescue Disk.html
 VeraCrypt System Files.html
 VeraCrypt Volume Format Specification.html
