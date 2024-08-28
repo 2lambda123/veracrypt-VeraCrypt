@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.13">
+  <localization prog-version= "1.26.14">
     <language langid="cs" name="Čeština" en-name="Czech" version="1.3.0" translators="Vítek Moser, Lagardere" />
     <font lang="cs" class="normal" size="11" face="default" />
     <font lang="cs" class="bold" size="13" face="Arial" />
@@ -1617,10 +1617,10 @@
     <entry lang="cs" key="EMV_SELECT_AID_FAILED">AID karty ve čtečce nebylo možné vybrat.</entry>
     <entry lang="cs" key="EMV_ICC_CERT_NOTFOUND">Certifikát veřejného klíče ICC nebyl na kartě nalezen.</entry>
     <entry lang="cs" key="EMV_ISSUER_CERT_NOTFOUND">Certifikát veřejného klíče vydavatele nebyl na kartě nalezen.</entry>
-    <entry lang="cs" key="EMV_CPLC_NOTFOUND">CLPC nebyl na kartě EMV nalezen.</entry>
+    <entry lang="cs" key="EMV_CPLC_NOTFOUND">CPLC nebyl na kartě EMV nalezen.</entry>
     <entry lang="cs" key="EMV_PAN_NOTFOUND">Na kartě EMV nebylo nalezeno žádné číslo primárního účtu (PAN).</entry>
     <entry lang="cs" key="INVALID_EMV_PATH">Cesta k EMV je neplatná.</entry>
-    <entry lang="cs" key="EMV_KEYFILE_DATA_NOTFOUND">Není možné sestavit soubor klíče z dat karty EMV.\n\nNení k dispozici jeden z následujících údajů:\n- Certifikát veřejného klíče ICC.\n- Certifikát veřejného klíče vydavatele.\n- Data CPCL.</entry>
+    <entry lang="cs" key="EMV_KEYFILE_DATA_NOTFOUND">Není možné sestavit soubor klíče z dat karty EMV.\n\nNení k dispozici jeden z následujících údajů:\n- Certifikát veřejného klíče ICC.\n- Certifikát veřejného klíče vydavatele.\n- Data CPLC.</entry>
     <entry lang="cs" key="SCARD_W_REMOVED_CARD">Ve čtečce není žádná karta.\n\nZkontrolujte, zda je karta správně zasunuta.</entry>
     <entry lang="cs" key="FORMAT_EXTERNAL_FAILED">Příkaz Windows format.com selhal při formátování svazku jako NTFS/exFAT/ReFS: Chyba 0x%.8X.\n\nPřechod zpět pro použití Windows FormatEx API.</entry>
     <entry lang="cs" key="FORMATEX_API_FAILED">Windows FormatEx API se nepodařilo naformátovat svazek jako NTFS/exFAT/ReFS.\n\nStav selhání = %s.</entry>

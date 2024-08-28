@@ -59,7 +59,7 @@ extern unsigned short _rotl16(unsigned short value, unsigned char shift);
 #define TC_APP_NAME						"VeraCrypt"
 
 // Version displayed to user 
-#define VERSION_STRING					"1.26.13"
+#define VERSION_STRING					"1.26.14"
 
 #ifdef VC_EFI_CUSTOM_MODE
 #define VERSION_STRING_SUFFIX			"-CustomEFI"
@@ -73,7 +73,7 @@ extern unsigned short _rotl16(unsigned short value, unsigned char shift);
 #define VERSION_NUM						0x0126
 
 // Release date
-#define TC_STR_RELEASE_DATE			L"August 4, 2024"
+#define TC_STR_RELEASE_DATE			L"August 25, 2024"
 #define TC_RELEASE_DATE_YEAR			2024
 #define TC_RELEASE_DATE_MONTH			 8
 
@@ -349,7 +349,13 @@ extern BOOLEAN VC_KeAreAllApcsDisabled (VOID);
 #ifdef _M_ARM64
 #	define  _WIN32_WINNT 0x0A00
 #else
-#	define	_WIN32_WINNT 0x0601	/* Does not apply to the driver */
+// for Visual Studio 2015 and later, set minimum Windows version to Windows 8
+// for old versions of Visual Studio, set minimum Windows version to Windows 7
+#if _MSC_VER >= 1900
+#	define	_WIN32_WINNT 0x0602
+#else
+#   define	_WIN32_WINNT 0x0601
+#endif
 #endif
 #endif
 

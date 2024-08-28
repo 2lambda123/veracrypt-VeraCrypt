@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VeraCrypt>
-  <localization prog-version= "1.26.13">
+  <localization prog-version= "1.26.14">
     <language langid="nb" name="Norsk Bokmål" en-name="Norwegian (Bokmål)" version="0.1.0" translators="Marius Kjærstad" />
     <font lang="nb" class="normal" size="11" face="default" />
     <font lang="nb" class="bold" size="13" face="Arial " />
@@ -1262,7 +1262,7 @@
     <entry lang="nb" key="RETRY_HIDDEN_SECTOR_DETECTION">Prøv å oppdage skjulte sektorer igjen</entry>
     <entry lang="nb" key="ENABLE_BAD_SECTOR_ZEROING">Feil: Innholdet i en eller flere sektorer på disken kan ikke leses (sannsynligvis på grunn av en fysisk defekt).\n\nProsessen med kryptering på stedet kan fortsette bare når sektorene har blitt gjort lesbare igjen. VeraCrypt kan forsøke å gjøre disse sektorene lesbare ved å skrive nuller til sektorene (deretter vil slik null-blokk bli kryptert). Merk imidlertid at data som er lagret i de ikke-lesbare sektorene vil gå tapt. Hvis du vil unngå dette, kan du forsøke å gjenopprette deler av de ødelagte dataene ved hjelp av passende tredjepartsverktøy.\n\nMerk: I tilfelle av fysisk skadede sektorer (i motsetning til ren dataskade og sjekksummfeil) vil de fleste typer lagringsenheter internt allokere sektorene når data forsøkes skrevet til dem (slik at den eksisterende dataen i de skadede sektorene kan forbli ukryptert på disken).\n\nVil du at VeraCrypt skal skrive nuller til de ikke-lesbare sektorene?</entry>
     <entry lang="nb" key="DISCARD_UNREADABLE_ENCRYPTED_SECTORS">Feil: Innholdet i en eller flere sektorer på disken kan ikke leses (sannsynligvis på grunn av en fysisk defekt).\n\nFor å kunne fortsette dekryptering, må VeraCrypt forkaste innholdet i de ikke-lesbare sektorene (innholdet vil bli erstattet med pseudorandom data). Vennligst merk at, før du fortsetter, kan du forsøke å gjenopprette deler av eventuelle ødelagte data ved hjelp av passende tredjepartsverktøy.\n\nVil du at VeraCrypt skal forkaste dataen i de ikke-lesbare sektorene nå?</entry>
-    <entry lang="nb" key="ZEROed_BAD_SECTOR_COUNT">Merk: VeraCrypt har erstattet innholdet i %I64d ikke-lesbare sektorer (%s) med krypterte null-plaintextblokker.</entry>
+    <entry lang="nb" key="ZEROED_BAD_SECTOR_COUNT">Merk: VeraCrypt har erstattet innholdet i %I64d ikke-lesbare sektorer (%s) med krypterte null-plaintextblokker.</entry>
     <entry lang="nb" key="SKIPPED_BAD_SECTOR_COUNT">Merk: VeraCrypt har erstattet innholdet i %I64d ikke-lesbare sektorer (%s) med pseudorandom data.</entry>
     <entry lang="nb" key="ENTER_TOKEN_PASSWORD">Angi passord/PIN for token '%s':</entry>
     <entry lang="nb" key="PKCS11_LIB_LOCATION_HELP">For å la VeraCrypt få tilgang til en sikkerhetstoken eller smartkort, må du først installere et PKCS #11 programvarebibliotek for tokenet eller smartkortet. Et slikt bibliotek kan være levert med enheten eller det kan være tilgjengelig for nedlasting fra leverandørens nettsted eller andre tredjeparter.\n\nEtter at du har installert biblioteket, kan du enten velge det manuelt ved å klikke 'Velg Bibliotek' eller du kan la VeraCrypt finne og velge det automatisk ved å klikke 'Automatisk oppdag bibliotek' (bare Windows systemkatalog vil bli søkt).</entry>
@@ -1620,7 +1620,7 @@
     <entry lang="nb" key="EMV_CPLC_NOTFOUND">CPLC ble ikke funnet i EMV-kortet.</entry>
     <entry lang="nb" key="EMV_PAN_NOTFOUND">Ingen Primær Kontonummer (PAN) funnet på EMV-kortet.</entry>
     <entry lang="nb" key="INVALID_EMV_PATH">EMV-stien er ugyldig.</entry>
-    <entry lang="nb" key="EMV_KEYFILE_DATA_NOTFOUND">Kunne ikke opprette en nøkkelfil fra EMV-kortets data.\n\nEn av følgende mangler:\n- ICC Offentlig Nøkkel Sertifikat.\n- Utsteder Offentlig Nøkkel Sertifikat.\n- CPCL-data.</entry>
+    <entry lang="nb" key="EMV_KEYFILE_DATA_NOTFOUND">Kunne ikke opprette en nøkkelfil fra EMV-kortets data.\n\nEn av følgende mangler:\n- ICC Offentlig Nøkkel Sertifikat.\n- Utsteder Offentlig Nøkkel Sertifikat.\n- CPLC-data.</entry>
     <entry lang="nb" key="SCARD_W_REMOVED_CARD">Ingen kort i leseren.\n\nVennligst forsikre deg om at kortet er riktig satt inn.</entry>
     <entry lang="nb" key="FORMAT_EXTERNAL_FAILED">Windows format.com-kommandoen mislyktes i å formatere volumet som NTFS/exFAT/ReFS: Feil 0x%.8X.\n\nGår tilbake til bruk av Windows FormatEx API.</entry>
     <entry lang="nb" key="FORMATEX_API_FAILED">Windows FormatEx API mislyktes i å formatere volumet som NTFS/exFAT/ReFS.\n\nFeilstatus = %s.</entry>

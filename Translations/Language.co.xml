@@ -7,7 +7,7 @@ Information about Corsican localization:
 
 2. History of Corsican translation for VeraCrypt:
 
-	- Updated in 2024 by Patriccollu di Santa Maria è Sichè: Aug. 2nd (1.26.13),
+	- Updated in 2024 by Patriccollu di Santa Maria è Sichè: Aug. 2nd (1.26.14), Aug. 10th (1.26.14)
 	- Updated in 2023 by Patriccollu di Santa Maria è Sichè: May 29th (1.26), May 30th (1.26), June 1st (1.26),
 	          June 2nd (1.26), June 5th (1.26.2), June 21st (1.26.2), June 23rd (1.26.2), June 25th (1.26.2),
 	          June 29th (1.26.2), July 1st (1.26.3), July 30th (1.26.4), Aug. 14th (1.26.5), Sep. 8th (1.26.5),
@@ -19,8 +19,8 @@ Information about Corsican localization:
 	https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/blob/ceppu/Prughjetti/VeraCrypt/Traduzzione.md
 -->
 <VeraCrypt>
-	<localization prog-version="1.26.13">
-		<language langid="co" name="Corsu" en-name="Corsican" version="1.4.5" translators="Patriccollu di Santa Maria è Sichè"/>
+	<localization prog-version="1.26.14">
+		<language langid="co" name="Corsu" en-name="Corsican" version="1.4.6" translators="Patriccollu di Santa Maria è Sichè"/>
 		<font lang="co" class="normal" size="11" face="default"/>
 		<font lang="co" class="bold" size="13" face="Arial"/>
 		<font lang="co" class="fixed" size="12" face="Lucida Console"/>
@@ -651,12 +651,12 @@ Information about Corsican localization:
 		<entry lang="co" key="PASSWORD_HIDDEN_OS_TITLE">Parolla d’intesa per u sistema operatoriu piattatu</entry>
 		<entry lang="co" key="PASSWORD_LENGTH_WARNING">AVERTIMENTU : E parolle d’intesa corte sò faciule à sfurzà impieghendu e tecniche di forza bruttale !\n\nVi ricumandemu di sceglie una parolla d’intesa d’omancu 20 caratteri. Da veru, vulete impiegà una parolla d’intesa corta ?</entry>
 		<entry lang="co" key="PASSWORD_TITLE">Parolla d’intesa di u vulume</entry>
-		<entry lang="co" key="PASSWORD_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.</entry>
-		<entry lang="co" key="PASSWORD_OR_KEYFILE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.</entry>
-		<entry lang="co" key="PASSWORD_OR_MODE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Modu di muntatura gattivu.\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.</entry>
-		<entry lang="co" key="PASSWORD_OR_KEYFILE_OR_MODE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Modu di muntatura gattivu.\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.</entry>
-		<entry lang="co" key="PASSWORD_WRONG_AUTOMOUNT">A muntatura autumatica hè fiascata per via d’una (o più) di ste ragioni :\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Ùn si trova alcunu vulume accettevule.</entry>
-		<entry lang="co" key="PASSWORD_OR_KEYFILE_WRONG_AUTOMOUNT">A muntatura autumatica hè fiascata per via d’una (o più) di ste ragioni :\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Ùn si trova alcunu vulume accettevule.</entry>
+		<entry lang="co" key="PASSWORD_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
+		<entry lang="co" key="PASSWORD_OR_KEYFILE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
+		<entry lang="co" key="PASSWORD_OR_MODE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Modu di muntatura gattivu.\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
+		<entry lang="co" key="PASSWORD_OR_KEYFILE_OR_MODE_WRONG">L’operazione hè fiascata per via d’una (o più) di ste ragioni :\n - Modu di muntatura gattivu.\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Vulume inaccettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
+		<entry lang="co" key="PASSWORD_WRONG_AUTOMOUNT">A muntatura autumatica hè fiascata per via d’una (o più) di ste ragioni :\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Ùn si trova alcunu vulume accettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
+		<entry lang="co" key="PASSWORD_OR_KEYFILE_WRONG_AUTOMOUNT">A muntatura autumatica hè fiascata per via d’una (o più) di ste ragioni :\n - Schedariu(i) chjave incurrettu(i).\n - Parolla d’intesa incurretta.\n - Numeru PIM di vulume incurrettu.\n - PRF (tazzeghju) incurrettu.\n - Ùn si trova alcunu vulume accettevule.\n - U vulume impiegheghja una cifratura anziana chì hè stata cacciata.\n - I vulumi à u furmatu TrueCrypt ùn sò più accettati.</entry>
 		<entry lang="co" key="PASSWORD_WRONG_CAPSLOCK_ON">\n\nAvertimentu : U tastu maiuscule hè ammarchjunatu. Què vi pò impedisce di stampittà currettamente a vostra parolla d’intesa.</entry>
 		<entry lang="co" key="PIM_CHANGE_WARNING">Arricurdassi di u numeru per muntà u vulume</entry>
 		<entry lang="co" key="PIM_HIDVOL_HOST_TITLE">PIM di u vulume esternu</entry>
@@ -1636,10 +1636,10 @@ Information about Corsican localization:
 		<entry lang="co" key="EMV_SELECT_AID_FAILED">L’infurmazione AID di a carta in u lettore ùn pò micca esse selezziunata.</entry>
 		<entry lang="co" key="EMV_ICC_CERT_NOTFOUND">U certificatu di chjave publica ICC ùn si trova micca in a carta.</entry>
 		<entry lang="co" key="EMV_ISSUER_CERT_NOTFOUND">U certificatu di chjave publica di l’emettore ùn si trova micca in a carta.</entry>
-		<entry lang="co" key="EMV_CPLC_NOTFOUND">CLPC ùn si trova micca in a carta EMV.</entry>
+		<entry lang="co" key="EMV_CPLC_NOTFOUND">CPLC ùn si trova micca in a carta EMV.</entry>
 		<entry lang="co" key="EMV_PAN_NOTFOUND">Ùn si trova alcunu numeru principale di contu in a carta EMV.</entry>
 		<entry lang="co" key="INVALID_EMV_PATH">U chjassu EMV hè inaccettevule.</entry>
-		<entry lang="co" key="EMV_KEYFILE_DATA_NOTFOUND">Impussibule di custruisce un schedariu chjave cù i dati di a carta EMV.\n\nUna di ste cundizione hè assente :\n- U certificatu di chjave publica ICC.\n- U certificatu di chjave publica di l’emettore.\n- I dati CPCL.</entry>
+		<entry lang="co" key="EMV_KEYFILE_DATA_NOTFOUND">Impussibule di custruisce un schedariu chjave cù i dati di a carta EMV.\n\nUna di ste cundizione hè assente :\n- U certificatu di chjave publica ICC.\n- U certificatu di chjave publica di l’emettore.\n- I dati CPLC.</entry>
 		<entry lang="co" key="SCARD_W_REMOVED_CARD">Alcuna carta in u lettore.\n\nAssicuratevi chì a carta hè framessa currettamente.</entry>
 		<entry lang="co" key="FORMAT_EXTERNAL_FAILED">A cumanda « format.com » di Windows ùn hà micca riesciutu à mette u vulume à u furmatu NTFS/exFAT/ReFS : Sbagliu 0x%.8X.\n\nRivultata à impiegà l’API « FormatEx » di Windows.</entry>
 		<entry lang="co" key="FORMATEX_API_FAILED">L’API « FormatEx » di Windows ùn hà micca riesciutu à mette u vulume à u furmatu NTFS/exFAT/ReFS.\n\nStatu di u fiascu = %s.</entry>
