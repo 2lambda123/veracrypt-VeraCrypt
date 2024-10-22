@@ -2636,7 +2636,7 @@ namespace VeraCrypt
 	bool EfiBoot::IsEfiBoot() {
 		DWORD BootOrderLen;
 		BootOrderLen = GetFirmwareEnvironmentVariable(L"BootOrder", EfiVarGuid, tempBuf, sizeof(tempBuf));
-		return BootOrderLen != 0;
+		return (BootOrderLen != 0) || (GetLastError() != ERROR_INVALID_FUNCTION);
 	}
 
 	void EfiBoot::DeleteStartExec(uint16 statrtOrderNum, wchar_t* type) {
@@ -2651,16 +2651,9 @@ namespace VeraCrypt
 		}
 		// Check EFI
 		if (!IsEfiBoot()) {
-			dwLastError = GetLastError();
-			if (dwLastError != ERROR_SUCCESS)
-			{
-				if (!bPrivilegesSet)
-					SetPrivilege(SE_SYSTEM_ENVIRONMENT_NAME, FALSE);
-				// format message to append the error code to the exception message
-				wchar_t szMsg[128];
-				StringCchPrintfW(szMsg, ARRAYSIZE(szMsg), L"Failed to detect EFI environment (error code 0x%.8X)", dwLastError);
-				throw ErrorException(szMsg, SRC_POS);
-			}
+			if (!bPrivilegesSet)
+				SetPrivilege(SE_SYSTEM_ENVIRONMENT_NAME, FALSE);
+			throw ErrorException(L"Failed to detect EFI environment (error ERROR_INVALID_FUNCTION)", SRC_POS);
 		}
 		wchar_t	varName[256];
 		StringCchPrintfW(varName, ARRAYSIZE (varName), L"%s%04X", type == NULL ? L"Boot" : type, statrtOrderNum);
@@ -2720,16 +2713,9 @@ namespace VeraCrypt
 		}
 		// Check EFI
 		if (!IsEfiBoot()) {
-			dwLastError = GetLastError();
-			if (dwLastError != ERROR_SUCCESS)
-			{
-				if (!bPrivilegesSet)
-					SetPrivilege(SE_SYSTEM_ENVIRONMENT_NAME, FALSE);
-				// format message to append the error code to the exception message
-				wchar_t szMsg[1024];
-				StringCchPrintfW(szMsg, ARRAYSIZE(szMsg), L"Failed to detect EFI environment (error code 0x%.8X)", dwLastError);
-				throw ErrorException(szMsg, SRC_POS);
-			}
+			if (!bPrivilegesSet)
+				SetPrivilege(SE_SYSTEM_ENVIRONMENT_NAME, FALSE);
+			throw ErrorException(L"Failed to detect EFI environment (error ERROR_INVALID_FUNCTION)", SRC_POS);
 		}
 		
 		if (bDeviceInfoValid)
