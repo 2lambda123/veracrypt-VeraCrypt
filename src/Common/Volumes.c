@@ -192,6 +192,8 @@ int ReadVolumeHeader (BOOL bBoot, char *encryptedHeader, Password *password, int
 	size_t encryptionThreadCount = GetEncryptionThreadCount();
 	LONG *outstandingWorkItemCount = NULL;
 	int i;
+	int iterationsCount = 0;
+	int memoryCost = 0;
 #endif
 	size_t queuedWorkItems = 0;
 
@@ -306,6 +308,14 @@ int ReadVolumeHeader (BOOL bBoot, char *encryptedHeader, Password *password, int
 		// if a PRF is specified, we skip all other PRFs
 		if (selected_pkcs5_prf != 0 && enqPkcs5Prf != selected_pkcs5_prf)
 			continue;
+		
+		// we don't support Argon2 in pre-boot authentication
+		if (bBoot && (enqPkcs5Prf == ARGON2))
+			continue;
+
+		// For now, we don't included Argon2 in automatic detection
+		if (selected_pkcs5_prf == 0 && enqPkcs5Prf == ARGON2)
+			continue;
 
 #if !defined(_UEFI)
 		if ((selected_pkcs5_prf == 0) && (encryptionThreadCount > 1))
@@ -322,9 +332,10 @@ int ReadVolumeHeader (BOOL bBoot, char *encryptedHeader, Password *password, int
 						item->KeyReady = FALSE;
 						item->Pkcs5Prf = enqPkcs5Prf;
 
+						iterationsCount = get_pkcs5_iteration_count (enqPkcs5Prf, pim, bBoot, &memoryCost);
 						EncryptionThreadPoolBeginKeyDerivation (keyDerivationCompletedEvent, noOutstandingWorkItemEvent,
 							&item->KeyReady, outstandingWorkItemCount, enqPkcs5Prf, keyInfo->userKey,
-							keyInfo->keyLength, keyInfo->salt, get_pkcs5_iteration_count (enqPkcs5Prf, pim, bBoot), item->DerivedKey);
+							keyInfo->keyLength, keyInfo->salt, iterationsCount, memoryCost, item->DerivedKey);
 
 						++queuedWorkItems;
 						break;
@@ -346,7 +357,9 @@ int ReadVolumeHeader (BOOL bBoot, char *encryptedHeader, Password *password, int
 					if (!item->Free && InterlockedExchangeAdd (&item->KeyReady, 0) == TRUE)
 					{
 						pkcs5_prf = item->Pkcs5Prf;
-						keyInfo->noIterations = get_pkcs5_iteration_count (pkcs5_prf, pim, bBoot);
+						iterationsCount = get_pkcs5_iteration_count (pkcs5_prf, pim, bBoot, &memoryCost);
+						keyInfo->noIterations = iterationsCount;
+						keyInfo->memoryCost = memoryCost;
 						memcpy (dk, item->DerivedKey, sizeof (dk));
 
 						item->Free = TRUE;
@@ -365,7 +378,9 @@ KeyReady:	;
 #endif // !defined(_UEFI)
 		{
 			pkcs5_prf = enqPkcs5Prf;
-			keyInfo->noIterations = get_pkcs5_iteration_count (enqPkcs5Prf, pim, bBoot);
+			iterationsCount = get_pkcs5_iteration_count (enqPkcs5Prf, pim, bBoot, &memoryCost);
+			keyInfo->noIterations = iterationsCount;
+			keyInfo->memoryCost = memoryCost;
 
 			switch (pkcs5_prf)
 			{
@@ -380,20 +395,24 @@ KeyReady:	;
 				break;
 
                 #ifndef WOLFCRYPT_BACKEND
-                        case BLAKE2S:
+            case BLAKE2S:
 				derive_key_blake2s (keyInfo->userKey, keyInfo->keyLength, keyInfo->salt,
 					PKCS5_SALT_SIZE, keyInfo->noIterations, dk, GetMaxPkcs5OutSize());
 				break;
 
-	                case WHIRLPOOL:
+	        case WHIRLPOOL:
 				derive_key_whirlpool (keyInfo->userKey, keyInfo->keyLength, keyInfo->salt,
 					PKCS5_SALT_SIZE, keyInfo->noIterations, dk, GetMaxPkcs5OutSize());
 				break;
 
-
-                        case STREEBOG:
+            case STREEBOG:
 				derive_key_streebog(keyInfo->userKey, keyInfo->keyLength, keyInfo->salt,
 					PKCS5_SALT_SIZE, keyInfo->noIterations, dk, GetMaxPkcs5OutSize());
+				break;
+
+            case ARGON2:
+				derive_key_argon2(keyInfo->userKey, keyInfo->keyLength, keyInfo->salt,
+					PKCS5_SALT_SIZE, keyInfo->noIterations, keyInfo->memoryCost, dk, GetMaxPkcs5OutSize());
 				break;
                 #endif	
                         default:
@@ -540,6 +559,7 @@ KeyReady:	;
 					{
 						cryptoInfo->pkcs5 = pkcs5_prf;
 						cryptoInfo->noIterations = keyInfo->noIterations;
+						cryptoInfo->memoryCost = keyInfo->memoryCost;
 						cryptoInfo->volumePim = pim;
 						goto ret;
 					}
@@ -581,6 +601,7 @@ KeyReady:	;
 				// PKCS #5
 				cryptoInfo->pkcs5 = pkcs5_prf;
 				cryptoInfo->noIterations = keyInfo->noIterations;
+				cryptoInfo->memoryCost = keyInfo->memoryCost;
 				cryptoInfo->volumePim = pim;
 
 				// Init the cipher with the decrypted master key
@@ -910,6 +931,13 @@ int CreateVolumeHeaderInMemory (HWND hwndDlg, BOOL bBoot, char *header, int ea, 
 	if (pim < 0)
 		pim = 0;
 
+	// we don't support Argon2 in pre-boot authentication
+	if (bBoot && (pkcs5_prf == ARGON2))
+	{
+		crypto_close (cryptoInfo);
+		return ERR_PARAMETER_INCORRECT;
+	}
+
 	memset (header, 0, TC_VOLUME_HEADER_EFFECTIVE_SIZE);
 #if !defined(_UEFI)
 	VirtualLock (&keyInfo, sizeof (keyInfo));
@@ -962,12 +990,13 @@ int CreateVolumeHeaderInMemory (HWND hwndDlg, BOOL bBoot, char *header, int ea, 
 	{
 		memcpy (keyInfo.userKey, password->Text, nUserKeyLen);
 		keyInfo.keyLength = nUserKeyLen;
-		keyInfo.noIterations = get_pkcs5_iteration_count (pkcs5_prf, pim, bBoot);
+		keyInfo.noIterations = get_pkcs5_iteration_count (pkcs5_prf, pim, bBoot, &keyInfo.memoryCost);
 	}
 	else
 	{
 		keyInfo.keyLength = 0;
 		keyInfo.noIterations = 0;
+		keyInfo.memoryCost = 0;
 	}
 
 	// User selected encryption algorithm
@@ -976,6 +1005,7 @@ int CreateVolumeHeaderInMemory (HWND hwndDlg, BOOL bBoot, char *header, int ea, 
 	// User selected PRF
 	cryptoInfo->pkcs5 = pkcs5_prf;
 	cryptoInfo->noIterations = keyInfo.noIterations;
+	cryptoInfo->memoryCost = keyInfo.memoryCost;
 	cryptoInfo->volumePim = pim;
 
 	// Mode of operation
@@ -1022,6 +1052,11 @@ int CreateVolumeHeaderInMemory (HWND hwndDlg, BOOL bBoot, char *header, int ea, 
 		case STREEBOG:
 			derive_key_streebog(keyInfo.userKey, keyInfo.keyLength, keyInfo.salt,
 				PKCS5_SALT_SIZE, keyInfo.noIterations, dk, GetMaxPkcs5OutSize());
+			break;
+
+		case ARGON2:
+			derive_key_argon2(keyInfo.userKey, keyInfo.keyLength, keyInfo.salt,
+				PKCS5_SALT_SIZE, keyInfo.noIterations, keyInfo.memoryCost, dk, GetMaxPkcs5OutSize());
 			break;
         #endif
 		default:
